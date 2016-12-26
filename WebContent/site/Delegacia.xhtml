@@ -6,13 +6,13 @@
 	template="../template/Layout.xhtml">
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Cadastro de Grupos</h1>
+		<h1 class="aw-page-title">Cadastro de delegacias</h1>
 		
 		<h:form id="frm">
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{GrupoBean.cadastrar()}"
+					<p:commandButton value="Salvar" action="#{DelegaciaBean.cadastrar()}"
 						process="@this capaPanel" update="@form" />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -26,36 +26,36 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
 					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{GrupoBean.grupo.nome}" />
+					<p:inputText id="nome" value="#{DelegaciaBean.delegacia.nome}" />
 					
 				</p:panelGrid>
 			</div>
 			
-			<p:dataTable var="grupo" value="#{GrupoBean.listarGrupos()}"
+			<p:dataTable var="delegacia" value="#{DelegaciaBean.listarDelegacias()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
 				columnClasses="nome">
 				
-			<p:column filterBy="#{grupo.nome}"  style="text-align: center; width:5%" 
+			<p:column filterBy="#{delegacia.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
-					<h:outputText value="#{grupo.nome}" />
+					<h:outputText value="#{delegacia.nome}" />
 			</p:column>			
 				
 			<p:column style="text-align: center; width:3%">
-					<h:link outcome="Grupo" value="Editar">
+					<h:link outcome="Delegacia" value="Editar">
 					<i class="icon-edit"></i>
-					<f:param name="codigo"  value="#{grupo.codigo}"/>
+					<f:param name="codigo"  value="#{delegacia.codigo}"/>
 					</h:link>
 			</p:column>
 				
 			
 			<p:column style="text-align: center; width:3%">
 				<h:commandLink value="Excluir"
-				 action="#{GrupoBean.excluir(grupo)}"
-				 onclick="if (!confirm('Confirmar a exclusão deste Grupo ? ')) return false"/>
+				 action="#{DelegaciaBean.excluir(delegacia)}"
+				 onclick="if (!confirm('Confirmar a exclusão desta Delegacia ? ')) return false"/>
 				 <i class="icon-remove-sign"></i>
 			</p:column>
 			

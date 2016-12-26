@@ -18,7 +18,7 @@ import util.Repositorios;
 
 @ManagedBean(name="PessoaBean")
 @RequestScoped
-public class CadastroPessoaBean implements Serializable{
+public class PessoaBean implements Serializable{
 
 	private Repositorios repositorios = new Repositorios();
 	private Pessoa pessoa = new Pessoa();

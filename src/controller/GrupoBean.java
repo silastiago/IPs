@@ -19,7 +19,7 @@ import util.Repositorios;
 
 @ManagedBean(name="GrupoBean")
 @RequestScoped
-public class CadastroGrupoBean implements Serializable{
+public class GrupoBean implements Serializable{
 
 	private Repositorios repositorios = new Repositorios();
 	private Grupo grupo = new Grupo(); 	
