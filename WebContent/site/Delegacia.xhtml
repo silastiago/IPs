@@ -34,22 +34,22 @@
 			<p:dataTable var="delegacia" value="#{DelegaciaBean.listarDelegacias()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome">
+				columnClasses="nome" editable="true" id="lista" >
 				
-			<p:column filterBy="#{delegacia.nome}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{delegacia.nome}" />
-			</p:column>			
 				
-			<p:column style="text-align: center; width:3%">
-					<h:link outcome="Delegacia" value="Editar">
-					<i class="icon-edit"></i>
-					<f:param name="codigo"  value="#{delegacia.codigo}"/>
-					</h:link>
-			</p:column>
+			<p:ajax event="rowEdit" listener="#{DelegaciaBean.onRowEdit}" update="@form" />
+       		<p:ajax event="rowEditCancel" listener="#{DelegaciaBean.onRowCancel}" update="lista" />			
+				
+			<p:column headerText="Nome">
+           			<p:cellEditor>
+               			<f:facet name="output"><h:outputText value="#{delegacia.nome}" /></f:facet>
+               			<f:facet name="input"><p:inputText value="#{delegacia.nome}"/></f:facet>
+           			</p:cellEditor>
+       		</p:column>			
+				
+			<p:column style="width:64px">
+           		<p:rowEditor />
+       		</p:column>
 				
 			
 			<p:column style="text-align: center; width:3%">

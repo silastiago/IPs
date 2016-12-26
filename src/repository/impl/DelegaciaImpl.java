@@ -34,6 +34,12 @@ public class DelegaciaImpl implements IDelegacia{
 	public void salvar(Delegacia delegacia) {
 		sessao.merge(delegacia);		
 	}
+	
+	
+	@Override
+	public void editar(Delegacia delegacia) {
+		sessao.update(delegacia);
+	}
 
 	@Override
 	public void remover(Delegacia delegacia) {

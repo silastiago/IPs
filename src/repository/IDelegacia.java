@@ -41,4 +41,6 @@ public interface IDelegacia {
 	*   	
 	*/
 	public void remover(Delegacia delegacia);
+
+	public void editar(Delegacia delegacia);
 }

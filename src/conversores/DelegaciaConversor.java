@@ -19,6 +19,7 @@ public class DelegaciaConversor implements Converter{
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		
 		Delegacia retorno = null;
 		IDelegacia delegacias = repositorios.getDelegacias();
 		

@@ -1,11 +1,15 @@
 package controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import model.Delegacia;
 import repository.IDelegacia;
@@ -43,6 +47,22 @@ public class DelegaciaBean implements Serializable{
 		//Retorna a lista de grupos
 		return listaDelegacia;
 	}
+	
+	public void onRowEdit(RowEditEvent event) throws IOException {
+		Delegacia delegaciaTemporaria = (Delegacia) event.getObject();
+		IDelegacia delegacias = this.repositorios.getDelegacias();
+		delegacias.editar(delegaciaTemporaria);
+		//String codigo = delegaciaTemporaria.getCodigo();
+		
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Delegacia.xhtml");
+    }
+	
+	public void onRowCancel(RowEditEvent event) throws IOException {
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Delegacia.xhtml");
+    }
+	
+	
+	
 
 	public Delegacia getDelegacia() {
 		return delegacia;
