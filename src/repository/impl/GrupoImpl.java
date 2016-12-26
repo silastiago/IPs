@@ -63,4 +63,10 @@ public class GrupoImpl implements IGrupo{
 	public void remover(Grupo grupo) {
 		this.sessao.delete(grupo);
 	}
+
+	@Override
+	public void editar(Grupo grupo) {
+		sessao.update(grupo);
+		
+	}
 }

@@ -12,7 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.event.RowEditEvent;
+
+import model.Delegacia;
 import model.Pessoa;
+import repository.IDelegacia;
 import repository.IPessoa;
 import util.Repositorios;
 
@@ -85,7 +89,21 @@ public class PessoaBean implements Serializable{
 			e.printStackTrace();
 		}
 		
-	}	
+	}
+	
+	public void onRowEdit(RowEditEvent event) throws IOException {
+		Pessoa pessoaTemporaria = (Pessoa) event.getObject();
+		IPessoa pessoas = this.repositorios.getPessoas();
+		pessoas.editar(pessoaTemporaria);
+		//String codigo = delegaciaTemporaria.getCodigo();
+		
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Pessoa.xhtml");
+    }
+	
+	public void onRowCancel(RowEditEvent event) throws IOException {
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Pessoa.xhtml");
+    }
+	
 	
 	public List<Pessoa> listarPessoas(){
 		//Esta linha estou instanciando a interface com sua implementacao.

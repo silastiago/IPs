@@ -1,13 +1,19 @@
 package controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
+
+import model.Delegacia;
 import model.Grupo;
+import repository.IDelegacia;
 import repository.IGrupo;
 import util.Repositorios;
 
@@ -57,6 +63,20 @@ public class GrupoBean implements Serializable{
 		//Retorna a lista de grupos
 		return listaGrupos;
 	}
+	
+	public void onRowEdit(RowEditEvent event) throws IOException {
+		Grupo grupoTemporario = (Grupo) event.getObject();
+		IGrupo grupos = this.repositorios.getGrupos();
+		grupos.editar(grupoTemporario);
+		//String codigo = delegaciaTemporaria.getCodigo();
+		
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Grupo.xhtml");
+    }
+	
+	public void onRowCancel(RowEditEvent event) throws IOException {
+	    FacesContext.getCurrentInstance().getExternalContext().redirect("Grupo.xhtml");
+    }
+	
 	
 	public Grupo getGrupo() {
 		return grupo;

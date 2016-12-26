@@ -39,4 +39,6 @@ public interface IGrupo {
 	*   	
 	*/
 	public void remover(Grupo grupo);
+
+	public void editar(Grupo grupo);
 }

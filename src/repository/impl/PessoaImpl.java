@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import model.Delegacia;
 import model.Pessoa;
 import repository.IPessoa;
 
@@ -103,6 +104,12 @@ public class PessoaImpl implements IPessoa{
 		session.removeAttribute("usuario");
 		session.removeAttribute("senha");
 		session.invalidate();
+	}
+	
+	
+	@Override
+	public void editar(Pessoa pessoa) {
+		sessao.update(pessoa);
 	}
 	
 	

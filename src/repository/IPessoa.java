@@ -57,4 +57,6 @@ public interface IPessoa {
 	public void remover(Pessoa pessoa);
 
 	public Pessoa retornaPessoa(String login);
+
+	public void editar(Pessoa pessoa);
 }
