@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:viewParam name="codigo" value="#{cadastroGrupoBean.grupo}" />
+</f:metadata>
+
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="tituloJanela">Sistema com JSF 2.0 e Facelets</ui:define>
+	<ui:define name="conteudo">
+		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1">
+			<div class="ui-fluid">
+				<h1>Cadastro de Grupo</h1>
+				<p:panelGrid columns="2" style="width: 100%; margin-top: 20px"
+					columnClasses="rotulo, campo">
+
+				<h:outputText value="Grupo: " />
+				<h:inputText value="#{cadastroGrupoBean.grupo.grupo}" />
+			</p:panelGrid>
+
+			<h:commandButton action="#{cadastroGrupoBean.cadastrar()}"
+				value="Salvar" />
+				</div>
+		</h:form>
+		
+		
+		<h1>Grupos Cadastradas</h1>
+	
+			<h:form enctype="multipart/form-data">
+			
+			<p:dataTable var="grupo" value="#{cadastroGrupoBean.listarGrupos()}"
+			frame="box" rules="all" cellpadding="3"
+				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
+				columnClasses="nome">
+				
+			<p:column filterBy="#{grupo.grupo}"  style="text-align: center; width:5%" 
+					filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Grupo" />
+					</f:facet>
+					<h:outputText value="#{grupo.grupo}" />
+			</p:column>	
+				
+			<p:column style="text-align: center; width:3%">
+					<h:link outcome="Grupo" value="Editar">
+					<i class="icon-edit"></i>
+					<f:param name="codigo"  value="#{grupo.codigo}"/>
+					</h:link>
+			</p:column>
+			
+			<p:column style="text-align: center; width:3%">
+				<h:commandLink value="Excluir"
+				 action="#{cadastroGrupoBean.excluir(grupo)}"
+				 onclick="if (!confirm('Confirmar a exclusão deste Grupo ? ')) return false"/>
+				 <i class="icon-remove-sign"></i>
+			</p:column>
+			
+			</p:dataTable>
+		</h:form>
+	</ui:define>	
+	</ui:composition>
+</html>

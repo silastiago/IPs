@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+	<f:viewParam name="codigo" value="#{PessoaBean.pessoa}" />
+</f:metadata>
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="tituloJanela">Sistema com JSF 2.0 e Facelets</ui:define>
+	<ui:define name="conteudo">
+		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1">
+			<div class="ui-fluid">
+				<h1>Cadastro de Pessoa</h1>				
+				<p:panelGrid columns="2" style="width: 100%; margin-top: 20px"
+					columnClasses="rotulo, campo">
+				<h:outputText value="Login" />
+				<h:inputText value="#{PessoaBean.pessoa.login}" />
+				<h:outputText value="Senha" />
+				<h:inputSecret value="#{PessoaBean.pessoa.senha}" />
+			
+			<h:outputLabel value="Grupo"/>
+				<h:selectOneMenu value="#{PessoaBean.pessoa.grupo}" required="true" label="Grupo">
+				<f:selectItem itemLabel="Selecione o grupo da pessoa" noSelectionOption="true"/>
+				<f:selectItems value="#{GrupoBean.listarGrupos()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
+				</h:selectOneMenu>
+			</p:panelGrid>
+
+			<h:commandButton action="#{PessoaBean.cadastrar()}"
+				value="Salvar" />
+				</div>
+		</h:form>
+
+	<h1>Pessoas Cadastrados</h1>
+	
+			<h:form enctype="multipart/form-data">
+			
+			<p:dataTable var="pessoa" value="#{PessoaBean.listarPessoas()}"
+			frame="box" rules="all" cellpadding="3"
+				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
+				columnClasses="nome">
+				
+				
+				
+			<p:column filterBy="#{pessoa.login}"  style="text-align: center; width:5%" 
+					filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Login" />
+					</f:facet>
+					<h:outputText value="#{pessoa.login}" />
+			</p:column>	
+			
+			<p:column filterBy="#{pessoa.grupo.grupo}"  style="text-align: center; width:5%" 
+					filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Grupo" />
+					</f:facet>
+					<h:outputText value="#{pessoa.grupo.nome}" />
+			</p:column>
+			
+				
+			<p:column style="text-align: center; width:3%">
+					<h:link outcome="Pessoa" value="Editar">
+					<i class="icon-edit"></i>
+					<f:param name="codigo"  value="#{pessoa.codigo}"/>
+					</h:link>
+			</p:column>
+				
+			
+			<p:column style="text-align: center; width:3%">
+				<h:commandLink value="Excluir"
+				 action="#{PessoaBean.excluir(pessoa)}"
+				 onclick="if (!confirm('Confirmar a exclusão desta Pessoa ? ')) return false"/>
+				 <i class="icon-remove-sign"></i>
+			</p:column>
+			
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>	
+	</ui:composition>
+</html>
