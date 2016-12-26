@@ -46,17 +46,16 @@
            			</p:cellEditor>
        		</p:column>			
 				
-			<p:column style="width:50px">
+			<p:column style="width:64px">
            		<p:rowEditor />
        		</p:column>
 			
-			<p:column style="text-align: center; width:8%">
-					<h:link outcome="Equipamentos" value="Ver computadores cadastrados">
+			<p:column style="text-align: center; width:3%">
+					<h:link outcome="Equipamentos" value="Editar">
+					<i class="fa-desktop"></i>
 					<f:param name="codigo"  value="#{delegacia.codigo}"/>
 					</h:link>
 			</p:column>
-			
-			
 			
 			<p:column style="text-align: center; width:3%">
 				<h:commandLink value="Excluir"
