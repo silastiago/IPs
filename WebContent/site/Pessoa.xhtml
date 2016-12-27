@@ -55,15 +55,20 @@
                			<f:facet name="input"><p:inputText value="#{pessoa.login}"/></f:facet>
            			</p:cellEditor>
        		</p:column>	
-				
 			
 			<p:column headerText="Grupo">
-           			<p:cellEditor>
-               			<f:facet name="output"><h:outputText value="#{pessoa.grupo.nome}" /></f:facet>
-               			<f:facet name="input"><p:inputText value="#{pessoa.grupo.nome}"/></f:facet>
-           			</p:cellEditor>
-       		</p:column>
-				
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{pessoa.grupo.nome}" /></f:facet>
+               <f:facet name="input">
+                   <p:selectOneMenu id="grupo" value="#{pessoa.grupo}"  required="true" label="Grupo">
+						<f:selectItems value="#{GrupoBean.listarGrupos()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
+                   </p:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+			
+			
+			
 			<p:column style="width:50px">
            		<p:rowEditor />
        		</p:column>	
