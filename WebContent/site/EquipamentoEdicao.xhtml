@@ -5,6 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template/Layout.xhtml">
 	
+<f:metadata>
+	<f:viewParam name="codigo" value="#{EquipamentoBean.equipamento}" />
+</f:metadata>	
+	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Cadastro de Equipamentos</h1>
 		
@@ -12,7 +16,7 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{EquipamentoBean.cadastrar()}"
+					<p:commandButton value="Salvar" action="#{EquipamentoBean.editar()}"
 						process="@this capaPanel" update="@form" />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -48,64 +52,7 @@
 					
 					
 				</p:panelGrid>
-			</div>
-			
-			<p:dataTable var="equipamento" value="#{EquipamentoBean.listar()}"
-			frame="box" rules="all" cellpadding="3"
-				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >
-				
-						
-				
-			<p:column filterBy="#{equipamento.nome}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{equipamento.nome}" />
-			</p:column>			
-				
-			<p:column filterBy="#{equipamento.descricao}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Descricao" />
-					</f:facet>
-					<h:outputText value="#{equipamento.descricao}" />
-			</p:column>
-			
-			<p:column filterBy="#{equipamento.ip}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="IP" />
-					</f:facet>
-					<h:outputText value="#{equipamento.ip}" />
-			</p:column>
-			
-			
-			<p:column filterBy="#{equipamento.delegacia.nome}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Delegacia" />
-					</f:facet>
-					<h:outputText value="#{equipamento.delegacia.nome}" />
-			</p:column>
-			
-			
-			<p:column style="text-align: center; width:3%">
-					<h:link outcome="EquipamentoEdicao" value="Editar">
-					<i class="fa-desktop"></i>
-					<f:param name="codigo"  value="#{equipamento.codigo}"/>
-					</h:link>
-			</p:column>
-			
-			<p:column style="text-align: center; width:3%">
-				<h:commandLink value="Excluir"
-				 action="#{EquipamentoBean.excluir(equipamento)}"
-				 onclick="if (!confirm('Confirmar a exclusão desta Equipamento ? ')) return false"/>
-				 <i class="icon-remove-sign"></i>
-			</p:column>
-			
-			</p:dataTable>		
+			</div>	
 		</h:form>
 	</ui:define>
 	
