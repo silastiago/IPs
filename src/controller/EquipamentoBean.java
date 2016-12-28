@@ -1,13 +1,11 @@
 package controller;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import model.Equipamento;
 import repository.IEquipamento;
@@ -33,17 +31,8 @@ public class EquipamentoBean implements Serializable{
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
-
-		FacesContext fc = FacesContext.getCurrentInstance();
-
-		try {
-			fc.getExternalContext().redirect("Equipamento.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-
+	
 	public void excluir(Equipamento equipamento){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
