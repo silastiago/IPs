@@ -3,11 +3,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="../template/Layout.xhtml">
-	
-<f:metadata>
-	<f:viewParam name="codigo" value="#{DelegaciaBean.delegacia}" />
-</f:metadata>	
+	template="../template/Layout.xhtml">	
 	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Cadastro de delegacias</h1>
@@ -35,7 +31,7 @@
 				</p:panelGrid>
 			</div>
 			
-			<p:dataTable var="delegacia" value="#{DelegaciaBean.listarDelegacias()}"
+			<p:dataTable var="delegacia" value="#{DelegaciaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
 				columnClasses="nome">			
@@ -51,14 +47,14 @@
 			</p:column>
 			
 			<p:column style="text-align: center; width:3%">
-					<h:link outcome="Delegacia" value="Editar">
+					<h:link outcome="DelegaciaEdicao" value="Editar">
 					<i class="icon-edit"></i>
 					<f:param name="codigo"  value="#{delegacia.codigo}"/>
 					</h:link>
 			</p:column>
 			
 			<p:column style="text-align: center; width:8%">
-					<h:link outcome="Equipamentos" value="Ver computadores cadastrados">
+					<h:link outcome="Equipamento" value="Ver computadores cadastrados">
 					<f:param name="codigo"  value="#{delegacia.codigo}"/>
 					</h:link>
 			</p:column>

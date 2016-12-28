@@ -9,8 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.event.RowEditEvent;
-
 import model.Delegacia;
 import repository.IDelegacia;
 import util.Repositorios;
@@ -30,38 +28,39 @@ public class DelegaciaBean implements Serializable{
 		delegacias.salvar(delegacia);
 	}
 
+	public void editar(){
+		//Esta linha estou instanciando a interface com sua implementacao.
+		IDelegacia delegacias = this.repositorios.getDelegacias();
+		//Esta linha salva a entidade grupo.
+		delegacias.salvar(delegacia);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		
+		try {
+			fc.getExternalContext().redirect("Delegacia.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void excluir(Delegacia delegacia){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IDelegacia delegacias = this.repositorios.getDelegacias();
 		//Esta linha salva a entidade grupo.
 		delegacias.remover(delegacia);
 		//Atualizar a lista de grupos
-		this.listarDelegacias();
+		this.listar();
 	}	
 	
-	public List<Delegacia> listarDelegacias(){
+	public List<Delegacia> listar(){
 		//Esta linha estou instanciando a interface com sua implementação.
 		IDelegacia delegacias = this.repositorios.getDelegacias();
 		//Esta linha lista os grupos e joga em uma lista de grupos.
 		listaDelegacia = delegacias.listar();
 		//Retorna a lista de grupos
 		return listaDelegacia;
-	}
-	
-	public void onRowEdit(RowEditEvent event) throws IOException {
-		Delegacia delegaciaTemporaria = (Delegacia) event.getObject();
-		IDelegacia delegacias = this.repositorios.getDelegacias();
-		delegacias.editar(delegaciaTemporaria);
-		//String codigo = delegaciaTemporaria.getCodigo();
-		
-	    FacesContext.getCurrentInstance().getExternalContext().redirect("Delegacia.xhtml");
-    }
-	
-	public void onRowCancel(RowEditEvent event) throws IOException {
-	    FacesContext.getCurrentInstance().getExternalContext().redirect("Delegacia.xhtml");
-    }
-	
-	
+	}	
 	
 
 	public Delegacia getDelegacia() {

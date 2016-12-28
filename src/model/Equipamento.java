@@ -16,6 +16,7 @@ public class Equipamento implements Serializable{
 
 	private Integer codigo;
 	private String nome;
+	private String descricao;
 	private String ip;
 	private Delegacia delegacia;
 	
@@ -36,6 +37,13 @@ public class Equipamento implements Serializable{
 		this.nome = nome;
 	}
 	
+	@Column
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	@Column
 	public String getIp() {
 		return ip;

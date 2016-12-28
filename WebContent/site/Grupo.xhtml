@@ -5,9 +5,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template/Layout.xhtml">
 	
-<f:metadata>
-	<f:viewParam name="codigo" value="#{GrupoBean.grupo}" />
-</f:metadata>	
 	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Cadastro de Grupos</h1>
@@ -29,13 +26,15 @@
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
-					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{GrupoBean.grupo.nome}" />
+					<p:outputLabel value="Login" for="login" />
+					<p:inputText id="login" value="#{GrupoBean.grupo.nome}" />
+					
+					
 					
 				</p:panelGrid>
 			</div>
 			
-			<p:dataTable var="grupo" value="#{GrupoBean.listarGrupos()}"
+			<p:dataTable var="grupo" value="#{GrupoBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
 				columnClasses="nome" >	
@@ -49,7 +48,7 @@
 			</p:column>
 			
 			<p:column style="text-align: center; width:3%">
-					<h:link outcome="Grupo" value="Editar">
+					<h:link outcome="GrupoEdicao" value="Editar">
 					<i class="icon-edit"></i>
 					<f:param name="codigo"  value="#{grupo.codigo}"/>
 					</h:link>
