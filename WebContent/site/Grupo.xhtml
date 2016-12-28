@@ -5,6 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template/Layout.xhtml">
 	
+<f:metadata>
+	<f:viewParam name="codigo" value="#{GrupoBean.grupo}" />
+</f:metadata>	
+	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Cadastro de Grupos</h1>
 		
@@ -34,21 +38,22 @@
 			<p:dataTable var="grupo" value="#{GrupoBean.listarGrupos()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" editable="true" id="lista" >
-				
-			<p:ajax event="rowEdit" listener="#{GrupoBean.onRowEdit}" update="@form" />
-       		<p:ajax event="rowEditCancel" listener="#{GrupoBean.onRowCancel}" update="lista" />	
-				
-			<p:column headerText="Nome">
-           			<p:cellEditor>
-               			<f:facet name="output"><h:outputText value="#{grupo.nome}" /></f:facet>
-               			<f:facet name="input"><p:inputText value="#{grupo.nome}"/></f:facet>
-           			</p:cellEditor>
-       		</p:column>
-				
-			<p:column style="width:50px">
-           		<p:rowEditor />
-       		</p:column>	
+				columnClasses="nome" >	
+			
+			<p:column filterBy="#{grupo.nome}"  style="text-align: center; width:5%" 
+					filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Grupo" />
+					</f:facet>
+					<h:outputText value="#{grupo.nome}" />
+			</p:column>
+			
+			<p:column style="text-align: center; width:3%">
+					<h:link outcome="Grupo" value="Editar">
+					<i class="icon-edit"></i>
+					<f:param name="codigo"  value="#{grupo.codigo}"/>
+					</h:link>
+			</p:column>	
 			
 			<p:column style="text-align: center; width:3%">
 				<h:commandLink value="Excluir"

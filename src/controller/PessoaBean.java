@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import model.Delegacia;
 import model.Pessoa;
 import repository.IDelegacia;
 import repository.IPessoa;
+import util.FacesUtil;
 import util.Repositorios;
 
 @ManagedBean(name="PessoaBean")
@@ -40,8 +42,10 @@ public class PessoaBean implements Serializable{
 		return (HttpServletRequest) context.getExternalContext().getRequest();
 	}
 	
-	public void cadastrar(){
+	public void cadastrar() {
 		IPessoa pessoas = this.repositorios.getPessoas();
+		String senha = this.pessoa.getSenha();
+		this.pessoa.setSenha(FacesUtil.md5(senha));
 		pessoas.salvar(this.pessoa);
 	}
 
@@ -56,6 +60,9 @@ public class PessoaBean implements Serializable{
 		IPessoa pessoas = this.repositorios.getPessoas();
 		String pagina = "";
 		FacesContext fc = FacesContext.getCurrentInstance();
+		
+		String senha = this.pessoa.getSenha();
+		pessoa.setSenha(FacesUtil.md5(senha));		
 		
 		if (pessoas.login(pessoa) == false) {
 			pagina = "login.xhtml?faces-redirect=true";
@@ -94,6 +101,10 @@ public class PessoaBean implements Serializable{
 	public void onRowEdit(RowEditEvent event) throws IOException {
 		Pessoa pessoaTemporaria = (Pessoa) event.getObject();
 		IPessoa pessoas = this.repositorios.getPessoas();
+		
+		String senha = pessoaTemporaria.getSenha();
+		pessoaTemporaria.setSenha(FacesUtil.md5(senha));
+		
 		pessoas.editar(pessoaTemporaria);
 		//String codigo = delegaciaTemporaria.getCodigo();
 		

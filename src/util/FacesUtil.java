@@ -1,5 +1,9 @@
 package util;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -23,5 +27,22 @@ public class FacesUtil {
 		ExternalContext externalContext = facesContext.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		return request.getAttribute(name);
-	}	
+	}
+	
+	public static String md5(String senha) {
+	       MessageDigest m = null;
+		try {
+			m = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       m.update(senha.getBytes(),0, senha.length());
+	       String hash = new BigInteger(1,m.digest()).toString(16);
+	       //System.out.println("MD5: "+hash);
+	       
+		return hash;
+	}
+	
+	
 }

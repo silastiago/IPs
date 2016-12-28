@@ -4,10 +4,6 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="../template/Layout.xhtml">
-
-<f:metadata>
-	<f:viewParam name="codigo" value="#{PessoaBean.pessoa}" />
-</f:metadata>
 	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Pessoa</h1>
@@ -47,32 +43,44 @@
 			<p:dataTable var="pessoa" value="#{PessoaBean.listarPessoas()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >
+				columnClasses="nome" editable="true" id="lista" >>
+				
+			<p:ajax event="rowEdit" listener="#{PessoaBean.onRowEdit}" update="@form" />
+       		<p:ajax event="rowEditCancel" listener="#{PessoaBean.onRowCancel}" update="lista" />
 				
 				
-			<p:column filterBy="#{pessoa.login}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Login" />
-					</f:facet>
-					<h:outputText value="#{pessoa.login}" />
-			</p:column>
+			<p:column headerText="Login">
+           			<p:cellEditor>
+               			<f:facet name="output"><h:outputText value="#{pessoa.login}" /></f:facet>
+               			<f:facet name="input"><p:inputText value="#{pessoa.login}"/></f:facet>
+           			</p:cellEditor>
+       		</p:column>	
+			
+			<p:column headerText="Senha">
+           			<p:cellEditor>
+               			<f:facet name="output"><h:outputText value="#{pessoa.senha}" /></f:facet>
+               			<f:facet name="input"><p:inputText value="#{pessoa.senha}"/></f:facet>
+           			</p:cellEditor>
+       		</p:column>
 			
 			
-			<p:column filterBy="#{pessoa.grupo.nome}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
-					<f:facet name="header">
-						<h:outputText value="Grupo" />
-					</f:facet>
-					<h:outputText value="#{pessoa.grupo.nome}" />
-			</p:column>	
+		<p:column headerText="Grupo">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{pessoa.grupo.nome}" /></f:facet>
+               <f:facet name="input">
+                   <p:selectOneMenu id="grupo" value="#{pessoa.grupo}"  label="Grupo">
+						<f:selectItems value="#{GrupoBean.listarGrupos()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
+                   </p:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+			
+			
+			
+			<p:column style="width:50px">
+           		<p:rowEditor />
+       		</p:column>	
 				
-			<p:column style="text-align: center; width:3%">
-					<h:link outcome="Pessoa" value="Editar">
-					<i class="icon-edit"></i>
-					<f:param name="codigo"  value="#{pessoa.codigo}"/>
-					</h:link>
-			</p:column>	
 			
 			<p:column style="text-align: center; width:3%">
 				<h:commandLink value="Excluir"
