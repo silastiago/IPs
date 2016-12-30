@@ -4,56 +4,27 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="../template/Layout.xhtml">
+
+<f:metadata>
+	<f:viewParam name="codigo"/>
+</f:metadata>
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Cadastro de Equipamentos</h1>
+		<h1 class="aw-page-title">Equipamentos Cadastrados</h1>
 		
 		<h:form id="frm">
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{EquipamentoBean.cadastrar()}"
-						process="@this capaPanel" update="@form" />
+					<p:commandButton value="Novo" action="#{EquipamentoBean.novo(codigo)}"
+						process="@this" />	
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:messages autoUpdate="false" />
-			
-			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				
-					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}" placeholder="Aqui fica o nome do Equipamento"/>
-					
-					<p:outputLabel value="Descricao" for="descricao" />
-					<p:selectOneMenu id="descricao" value="#{EquipamentoBean.equipamento.descricao}"  label="Descricao">
-						<f:selectItem itemLabel="Computador" itemValue="Computador"/>
-						<f:selectItem itemLabel="Impressora" itemValue="Impressora"/>
-					</p:selectOneMenu>
-					
-					<p:outputLabel value="Ip" for="ip" />
-					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}" placeholder="Aqui fica o ip do Equipamento"/>
-					
-					
-					<p:outputLabel value="Delegacia" for="delegacia" />
-					<p:selectOneMenu id="delegacia" value="#{EquipamentoBean.equipamento.delegacia}"  label="Delegacia">
-						<f:selectItem itemLabel="Selecione a Delegacia" />
-						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia" itemValue="#{delegacia}" itemLabel="#{delegacia.nome}"/>
-					</p:selectOneMenu>
-					
-					
-				</p:panelGrid>
-			</div>
-			
-			<p:dataTable var="equipamento" value="#{EquipamentoBean.listar()}"
+			<p:dataTable var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >
-				
-						
+				columnClasses="nome" >			
 				
 			<p:column filterBy="#{equipamento.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">

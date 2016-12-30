@@ -16,12 +16,12 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{EquipamentoBean.editar()}"
+					<p:commandButton value="Editar" action="#{EquipamentoBean.editar()}"
 						process="@this capaPanel" update="@form" />
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:messages autoUpdate="false" />
+			<p:messages  closable="true"/>
 			
 			<div class="ui-fluid">
 				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
@@ -29,22 +29,21 @@
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
-					<p:outputLabel value="Nome" for="nome" />
+					<h:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}" placeholder="Aqui fica o nome do Equipamento"/>
 					
-					<p:outputLabel value="Descricao" for="descricao" />
+					<h:outputLabel value="Descricao" for="descricao" />
 					<p:selectOneMenu id="descricao" value="#{EquipamentoBean.equipamento.descricao}"  label="Descricao">
 						<f:selectItem itemLabel="Computador" itemValue="Computador"/>
 						<f:selectItem itemLabel="Impressora" itemValue="Impressora"/>
 					</p:selectOneMenu>
 					
-					<p:outputLabel value="Ip" for="ip" />
-					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}" placeholder="Aqui fica o ip do Equipamento">
+					<h:outputLabel value="Ip" for="ip" />
+					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}" placeholder="Aqui fica o ip do Equipamento" label="Ip">
 					<f:validateRegex pattern="^([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])" />
-					</p:inputText>
+					</p:inputText>					
 					
-					
-					<p:outputLabel value="Delegacia" for="delegacia" />
+					<h:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia" value="#{EquipamentoBean.equipamento.delegacia}"  label="Delegacia">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia" itemValue="#{delegacia}" itemLabel="#{delegacia.nome}"/>
