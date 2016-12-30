@@ -15,12 +15,12 @@
 
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{EquipamentoBean.cadastrar()}"
-						process="@this capaPanel"/>
-					
-					<p:commandButton value="Voltar" action="#{EquipamentoBean.voltar(codigo)}"
-						process="@this" />
-						
+					<p:commandButton value="Salvar"
+						action="#{EquipamentoBean.cadastrar()}" process="@this capaPanel" />
+
+					<p:commandButton value="Voltar"
+						action="#{EquipamentoBean.voltar(codigo)}" process="@this" />
+
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -46,12 +46,12 @@
 
 					<p:outputLabel value="Ip" for="ip" />
 					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}"
-						placeholder="Aqui fica o ip do Equipamento" >
+						placeholder="Aqui fica o ip do Equipamento">
 					</p:inputText>
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
-						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia" required="true">
+						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
