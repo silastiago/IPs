@@ -20,7 +20,7 @@ public class EquipamentoBean implements Serializable{
 	private Equipamento equipamento = new Equipamento();
 	private List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
 	private Repositorios repositorios = new Repositorios();
-	private Equipamento equipamentoSelecionado;
+	private Equipamento equipamentoSelecionado = new Equipamento();
 	
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.

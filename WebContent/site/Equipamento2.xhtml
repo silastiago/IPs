@@ -14,17 +14,27 @@
 		
 		<h:form id="frm">
 			
-			<p:toolbar>
+			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
-					<p:commandButton value="Novo" action="#{EquipamentoBean.novo(codigo)}"
-						process="@this" />	
+					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{EquipamentoBean.novo(codigo)}"
+						process="@this" />
+
+					<p:commandButton title="Editar" icon="ui-icon-pencil"
+						action="#{EquipamentoBean.edicao(codigo)}"
+						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
+
+					<p:commandButton title="Excluir" icon="ui-icon-trash" action="#{EquipamentoBean.novo(codigo)}"
+						process="@this" disabled="#{EquipamentoBean.equipamentoSelecionado == null}"/>	
+						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
+			<p:dataTable id="equipamento" var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >			
+				columnClasses="nome" selectionMode="single" selection="#{EquipamentoBean.equipamentoSelecionado}" rowKey="#{equipamento.codigo}">			
+				
+			<p:ajax event="rowSelect" update=":frm:toolbar"/>
 				
 			<p:column filterBy="#{equipamento.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
