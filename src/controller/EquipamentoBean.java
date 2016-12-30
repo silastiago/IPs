@@ -44,13 +44,29 @@ public class EquipamentoBean implements Serializable{
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("Equipamento.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void excluir(Equipamento equipamento){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
+		
+		System.out.println("Equipamento: "+ equipamento.getNome());
+		
 		//Esta linha salva a entidade grupo.
 		equipamentos.remover(equipamento);
+		
+		
+		
 
 		FacesContext fc = FacesContext.getCurrentInstance();
 

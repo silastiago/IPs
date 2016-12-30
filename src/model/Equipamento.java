@@ -29,7 +29,7 @@ public class Equipamento implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	@Column
+	@Column(unique=true)
 	public String getNome() {
 		return nome;
 	}
