@@ -28,7 +28,7 @@ public class DelegaciaConversor implements Converter{
 			
 		if (retorno == null) {
 			
-			String descricaoErro = "Estado não existe";
+			String descricaoErro = "Delegacia não existe";
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, descricaoErro, descricaoErro);
 			
 			throw new ConverterException(message);
