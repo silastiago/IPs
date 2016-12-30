@@ -10,7 +10,7 @@
 </f:metadata>
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Cadastro de Equipamentos</h1>
+		<h1 class="aw-page-title">Edição de Equipamento</h1>
 		
 		<h:form id="frm">
 			
@@ -22,39 +22,42 @@
 			</p:toolbar>
 			
 			<p:messages autoUpdate="true" closable="true" />
-			
+
 			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
+				<p:panelGrid id="capaPanel" columns="4" layout="grid"
 					style="margin-top: 20px; margin-bottom: 40px"
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				
-					<h:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}" placeholder="Aqui fica o nome do Equipamento"/>
-					
-					<h:outputLabel value="Descricao" for="descricao" />
-					<p:selectOneMenu id="descricao" value="#{EquipamentoBean.equipamento.descricao}"  label="Descricao">
-						<f:selectItem itemLabel="Computador" itemValue="Computador"/>
-						<f:selectItem itemLabel="Impressora" itemValue="Impressora"/>
+
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}"
+						placeholder="Aqui fica o nome do Equipamento" />
+
+					<p:outputLabel value="Descricao" for="descricao" />
+					<p:selectOneMenu id="descricao"
+						value="#{EquipamentoBean.equipamento.descricao}" label="Descricao">
+						<f:selectItem itemLabel="Computador" itemValue="Computador" />
+						<f:selectItem itemLabel="Impressora" itemValue="Impressora" />
 					</p:selectOneMenu>
-					
-					<h:outputLabel value="Ip" for="ip" />
-					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}" placeholder="Aqui fica o ip do Equipamento" label="Ip">
-					<!-- 
-					<f:validateRegex pattern="^([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]).([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])" />
-					 -->
-					</p:inputText>					
-					
-					<h:outputLabel value="Delegacia" for="delegacia" />
-					<p:selectOneMenu id="delegacia" value="#{EquipamentoBean.equipamento.delegacia}"  label="Delegacia">
+
+
+					<p:outputLabel value="Ip" for="ip" />
+					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}"
+						placeholder="Aqui fica o ip do Equipamento" >
+					</p:inputText>
+
+					<p:outputLabel value="Delegacia" for="delegacia" />
+					<p:selectOneMenu id="delegacia"
+						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia" required="true">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
-						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia" itemValue="#{delegacia}" itemLabel="#{delegacia.nome}"/>
+						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
+							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
-					
-					
+
+
 				</p:panelGrid>
-			</div>	
+			</div>
 		</h:form>
 	</ui:define>
-	
+
 </ui:composition>

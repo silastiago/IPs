@@ -1,1 +1,8 @@
+/conexao/
+/controller/
+/conversores/
+/filtro/
+/hibernate.cfg.xml
 /model/
+/repository/
+/util/

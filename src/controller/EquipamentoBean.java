@@ -20,7 +20,8 @@ public class EquipamentoBean implements Serializable{
 	private Equipamento equipamento = new Equipamento();
 	private List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
 	private Repositorios repositorios = new Repositorios();
-
+	private Equipamento equipamentoSelecionado;
+	
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
@@ -36,7 +37,6 @@ public class EquipamentoBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void editar(){
@@ -44,6 +44,7 @@ public class EquipamentoBean implements Serializable{
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
+		
 		int codigoDelegacia = equipamento.getDelegacia().getCodigo();
 		FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -63,10 +64,7 @@ public class EquipamentoBean implements Serializable{
 		System.out.println("Equipamento: "+ equipamento.getNome());
 		
 		//Esta linha salva a entidade grupo.
-		equipamentos.remover(equipamento);
-		
-		
-		
+		equipamentos.remover(equipamento);		
 
 		FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -110,6 +108,25 @@ public class EquipamentoBean implements Serializable{
 		}
 	}
 	
+	public void edicao(int codigo){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("EquipamentoEdicao.xhtml?codigo="+codigo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+	public Equipamento getEquipamentoSelecionado() {
+		return equipamentoSelecionado;
+	}
+
+	public void setEquipamentoSelecionado(Equipamento equipamentoSelecionado) {
+		this.equipamentoSelecionado = equipamentoSelecionado;
+	}
 
 	public Equipamento getEquipamento() {
 		return equipamento;

@@ -16,22 +16,15 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{EquipamentoBean.novo(codigo)}"
-						process="@this" />
-						
-					<p:commandButton value="Editar" icon="ui-icon-pencil" action="#{EquipamentoBean.edicao(codigo)}"
+					<p:commandButton value="Novo" action="#{EquipamentoBean.novo(codigo)}"
 						process="@this" />	
-						
-					<p:commandButton value="Excluir" icon="ui-icon-trash" action="#{EquipamentoBean.novo(codigo)}"
-						process="@this" />	
-						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="equipamento" var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
+			<p:dataTable var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" selectionMode="single" selection="#{EquipamentoBean.equipamentoSelecionado}" rowKey="#{equipamento.codigo}">			
+				columnClasses="nome" >			
 				
 			<p:column filterBy="#{equipamento.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
