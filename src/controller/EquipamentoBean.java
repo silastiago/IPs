@@ -21,17 +21,17 @@ public class EquipamentoBean implements Serializable{
 	private List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
 	private Repositorios repositorios = new Repositorios();
 
-	public void cadastrar(int codigo){
+	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
 		
+		int codigoDelegacia = equipamento.getDelegacia().getCodigo();
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("Equipamento.xhtml?codigo="+codigo);
-			
+			fc.getExternalContext().redirect("Equipamento.xhtml?codigo="+codigoDelegacia);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,11 +44,11 @@ public class EquipamentoBean implements Serializable{
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
-		
+		int codigoDelegacia = equipamento.getDelegacia().getCodigo();
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Equipamento.xhtml");
+			fc.getExternalContext().redirect("Equipamento.xhtml?codigo="+codigoDelegacia);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

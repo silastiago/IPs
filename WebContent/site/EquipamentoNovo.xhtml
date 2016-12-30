@@ -15,7 +15,7 @@
 
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{EquipamentoBean.cadastrar(codigo)}" 
+					<p:commandButton value="Salvar" action="#{EquipamentoBean.cadastrar()}"
 						process="@this capaPanel"/>
 					
 					<p:commandButton value="Voltar" action="#{EquipamentoBean.voltar(codigo)}"
@@ -49,7 +49,7 @@
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
-						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia">
+						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia" required="true">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
