@@ -7,32 +7,16 @@
 	
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Cadastro de Grupos</h1>
+		<h1 class="aw-page-title">Grupos Cadastrados</h1>
 		
 		<h:form id="frm">
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{GrupoBean.cadastrar()}"
-						process="@this capaPanel" update="@form" />
+					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{GrupoBean.novo()}"
+						process="@this" />
 				</p:toolbarGroup>
 			</p:toolbar>
-			
-			<p:messages autoUpdate="false" />
-			
-			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				
-					<p:outputLabel value="Login" for="login" />
-					<p:inputText id="login" value="#{GrupoBean.grupo.nome}" />
-					
-					
-					
-				</p:panelGrid>
-			</div>
 			
 			<p:dataTable var="grupo" value="#{GrupoBean.listar()}"
 			frame="box" rules="all" cellpadding="3"

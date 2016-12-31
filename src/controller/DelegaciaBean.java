@@ -26,6 +26,15 @@ public class DelegaciaBean implements Serializable{
 		IDelegacia delegacias = this.repositorios.getDelegacias();
 		//Esta linha salva a entidade grupo.
 		delegacias.salvar(delegacia);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		
+		try {
+			fc.getExternalContext().redirect("Delegacia.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void editar(){
@@ -54,7 +63,7 @@ public class DelegaciaBean implements Serializable{
 	}	
 	
 	public List<Delegacia> listar(){
-		//Esta linha estou instanciando a interface com sua implementação.
+		//Esta linha estou instanciando a interface com sua implementaï¿½ï¿½o.
 		IDelegacia delegacias = this.repositorios.getDelegacias();
 		//Esta linha lista os grupos e joga em uma lista de grupos.
 		listaDelegacia = delegacias.listar();
@@ -62,6 +71,16 @@ public class DelegaciaBean implements Serializable{
 		return listaDelegacia;
 	}	
 	
+	public void novo(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("DelegaciaNovo.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Delegacia getDelegacia() {
 		return delegacia;

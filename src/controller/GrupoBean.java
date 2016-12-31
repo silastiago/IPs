@@ -13,7 +13,7 @@ import model.Grupo;
 import repository.IGrupo;
 import util.Repositorios;
 
-/** Esta é uma Classe concreta que une as implementacoes das interfaces e das paginas xhtml referentes a entidade Grupo.
+/** Esta ï¿½ uma Classe concreta que une as implementacoes das interfaces e das paginas xhtml referentes a entidade Grupo.
  *   
  * @author silas
  * @since 18-08-2016
@@ -34,6 +34,16 @@ public class GrupoBean implements Serializable{
 		IGrupo grupos = this.repositorios.getGrupos();
 		//Esta linha salva a entidade grupo.
 		grupos.salvar(this.grupo);
+
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("Grupo.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public void editar(){
@@ -54,10 +64,10 @@ public class GrupoBean implements Serializable{
 	}
 
 	/** Este metodo Remove um grupo.
-	 *  @param grupo, Este grupo é o objeto Grupo que você irá remover.
+	 *  @param grupo, Este grupo ï¿½ o objeto Grupo que vocï¿½ irï¿½ remover.
 	 */
 	public void excluir(Grupo grupo){
-		//Esta linha estou instanciando a interface com sua implementação.
+		//Esta linha estou instanciando a interface com sua implementaï¿½ï¿½o.
 		IGrupo grupos = this.repositorios.getGrupos();
 		//Esta linha remove o grupo.
 		grupos.remover(grupo);
@@ -69,7 +79,7 @@ public class GrupoBean implements Serializable{
 	 * 	@return retorna a lista de todos os grupos cadastradas no sistema.
 	 */
 	public List<Grupo> listar(){
-		//Esta linha estou instanciando a interface com sua implementação.
+		//Esta linha estou instanciando a interface com sua implementaï¿½ï¿½o.
 		IGrupo grupos = this.repositorios.getGrupos();
 		//Esta linha lista os grupos e joga em uma lista de grupos.
 		listaGrupos = grupos.listar();
@@ -77,6 +87,17 @@ public class GrupoBean implements Serializable{
 		return listaGrupos;
 	}	
 
+	public void novo(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("GrupoNovo.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public Grupo getGrupo() {
 		return grupo;
 	}

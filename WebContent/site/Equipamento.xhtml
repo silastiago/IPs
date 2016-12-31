@@ -16,22 +16,16 @@
 			
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
-					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{EquipamentoBean.novo(codigo)}"
-						process="@this" />
-
-					<p:commandButton title="Editar" icon="ui-icon-pencil"
-						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
-
-					<p:commandButton title="Excluir" icon="ui-icon-trash" 
-						disabled="#{EquipamentoBean.equipamentoSelecionado == null}"/>	
+					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{EquipamentoBean.novo()}"
+						process="@this" />	
 						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="equipamento" var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
+			<p:dataTable id="equipamentos" var="equipamento" value="#{EquipamentoBean.listar(codigo)}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" selectionMode="single" selection="#{EquipamentoBean.equipamentoSelecionado}" rowKey="#{equipamento.codigo}">			
+				columnClasses="nome">			
 				
 			<p:ajax event="rowSelect" update=":frm:toolbar"/>
 			<p:ajax event="rowUnselect" update=":frm:toolbar"/>
@@ -83,6 +77,7 @@
 				 onclick="if (!confirm('Confirmar a exclusão desta Equipamento ? ')) return false"/>
 				 <i class="icon-remove-sign"></i>
 			</p:column>
+			
 			
 			</p:dataTable>		
 		</h:form>
