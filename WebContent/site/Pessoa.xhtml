@@ -12,33 +12,10 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{PessoaBean.cadastrar()}"
-						process="@this capaPanel" update="@form" />
+					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{PessoaBean.novo()}"
+						process="@this" />
 				</p:toolbarGroup>
 			</p:toolbar>
-			
-			<p:messages autoUpdate="false" />
-			
-			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				
-					<p:outputLabel value="Login" for="login" />
-					<p:inputText id="login" value="#{PessoaBean.pessoa.login}" />
-					
-					<p:outputLabel value="Senha" for="senha" />
-					<p:password id="senha" value="#{PessoaBean.pessoa.senha}" />
-					
-					<p:outputLabel value="Grupo" for="grupo" />
-					<p:selectOneMenu id="grupo" value="#{PessoaBean.pessoa.grupo}"  label="Grupo">
-						<f:selectItem itemLabel="Selecione o grupo" />
-						<f:selectItems value="#{GrupoBean.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
-					</p:selectOneMenu>
-					
-				</p:panelGrid>
-			</div>
 			
 			<p:dataTable var="pessoa" value="#{PessoaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"

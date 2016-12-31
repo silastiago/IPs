@@ -35,6 +35,16 @@ public class PessoaBean implements Serializable{
 		String senha = this.pessoa.getSenha();
 		this.pessoa.setSenha(FacesUtil.md5(senha));
 		pessoas.salvar(this.pessoa);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("Pessoa.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void editar() {
@@ -139,6 +149,16 @@ public class PessoaBean implements Serializable{
 		}	
 	}
 
+	public void novo(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("PessoaNovo.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
