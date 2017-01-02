@@ -25,7 +25,7 @@
 						disabled="#{EquipamentoBean.equipamentoSelecionado == null}">
 						<f:setPropertyActionListener
 							value="#{EquipamentoBean.equipamentoSelecionado}"
-							target="#{EquipamentoBean.equipamento}" />
+							target="#{EquipamentoBean.equipamento}"  />
 					</p:commandButton>
 
 					<span class="ui-separator"> <span
@@ -37,8 +37,6 @@
 						update="tabela_equipamentos toolbar"
 						action="#{EquipamentoBean.excluir}"
 						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
-
-
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -55,18 +53,10 @@
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
-
-					<!-- 
-					<p:commandButton action="#{switchBean.voltar()}"  value="Voltar" styleClass="btn btn-warning" />
-					 -->
-				</p:panelGrid>
-				
-				<p:panelGrid  columns="4" layout="grid"
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				<p:commandButton value="Listar" icon="ui-icon-search"
+					
+					<p:commandButton value="Listar" icon="ui-icon-search"
 						action="#{EquipamentoBean.listarDelegacias()}" update="@form" />
+					
 				</p:panelGrid>
 			</div>
 

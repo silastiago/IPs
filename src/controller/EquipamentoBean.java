@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import model.Equipamento;
@@ -14,7 +15,7 @@ import repository.IEquipamento;
 import util.Repositorios;
 
 @ManagedBean(name="EquipamentoBean")
-@RequestScoped
+@ViewScoped
 public class EquipamentoBean implements Serializable{
 
 	private Equipamento equipamento = new Equipamento();
