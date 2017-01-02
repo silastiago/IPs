@@ -18,6 +18,7 @@ import util.Repositorios;
 public class EquipamentoBean implements Serializable{
 
 	private Equipamento equipamento = new Equipamento();
+	private Equipamento equipamentoSelecionado;
 	private List<Equipamento> listaEquipamento;
 	private Repositorios repositorios = new Repositorios();
 	
@@ -60,14 +61,12 @@ public class EquipamentoBean implements Serializable{
 
 	}
 
-	public void excluir(Equipamento equipamento){
+	public void excluir(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 
-		System.out.println("Equipamento: "+ equipamento.getNome());
-
 		//Esta linha salva a entidade grupo.
-		equipamentos.remover(equipamento);		
+		equipamentos.remover(equipamentoSelecionado);		
 
 		FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -111,6 +110,27 @@ public class EquipamentoBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
+
+	public void edicao(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("EquipamentoEdicao.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Equipamento getEquipamentoSelecionado() {
+		return equipamentoSelecionado;
+	}
+
+
+	public void setEquipamentoSelecionado(Equipamento equipamentoSelecionado) {
+		this.equipamentoSelecionado = equipamentoSelecionado;
+	}
+
 
 	public Equipamento getEquipamento() {
 		return equipamento;

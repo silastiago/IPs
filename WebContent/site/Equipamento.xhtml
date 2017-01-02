@@ -15,8 +15,37 @@
 					<p:commandButton value="Novo" icon="ui-icon-plus"
 						action="#{EquipamentoBean.novo()}" process="@this" />
 
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
 					<p:commandButton value="Listar" icon="ui-icon-search"
 						action="#{EquipamentoBean.listarDelegacias()}" update="@form" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Editar" icon="ui-icon-pencil"
+						title="Editar" action="#{EquipamentoBean.edicao()}"
+						process="@this"
+						disabled="#{EquipamentoBean.equipamentoSelecionado == null}">
+						<f:setPropertyActionListener
+							value="#{EquipamentoBean.equipamentoSelecionado}"
+							target="#{EquipamentoBean.equipamento}" />
+					</p:commandButton>
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						title="Excluir" process="@this"
+						update="tabela_equipamentos toolbar"
+						action="#{EquipamentoBean.excluir}"
+						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
+
+
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -37,10 +66,16 @@
 				</p:panelGrid>
 			</div>
 
-			<p:dataTable id="equipamentos" var="equipamento"
+			<p:dataTable id="tabela_equipamentos" var="equipamento"
 				value="#{EquipamentoBean.listaEquipamento}" frame="box" rules="all"
 				cellpadding="3" width="100%" headerClass="cabecalho"
-				rowClasses="cor-sim, cor-nao" columnClasses="nome" emptyMessage="Nenhum Equipamento Cadastrado na Delegacia">
+				rowClasses="cor-sim, cor-nao" columnClasses="nome"
+				emptyMessage="Nenhum Equipamento Cadastrado na Delegacia"
+				selection="#{EquipamentoBean.equipamentoSelecionado}"
+				selectionMode="single" rowKey="#{equipamento.codigo}">
+
+				<p:ajax event="rowSelect" update=":frm:toolbar" />
+				<p:ajax event="rowUnselect" update=":frm:toolbar" />
 
 				<p:column filterBy="#{equipamento.nome}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">
@@ -75,7 +110,7 @@
 					<h:outputText value="#{equipamento.delegacia.nome}" />
 				</p:column>
 
-
+				<!-- 
 				<p:column style="text-align: center; width:3%">
 					<h:link outcome="EquipamentoEdicao" value="Editar">
 						<i class="fa-desktop"></i>
@@ -89,7 +124,7 @@
 						onclick="if (!confirm('Confirmar a exclusão desta Equipamento ? ')) return false" />
 					<i class="icon-remove-sign"></i>
 				</p:column>
-
+				 -->
 
 			</p:dataTable>
 		</h:form>

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import model.Grupo;
@@ -20,11 +20,12 @@ import util.Repositorios;
  */
 
 @ManagedBean(name="GrupoBean")
-@RequestScoped
+@ViewScoped
 public class GrupoBean implements Serializable{
 
 	private Repositorios repositorios = new Repositorios();
-	private Grupo grupo = new Grupo(); 	
+	private Grupo grupo = new Grupo();
+	private Grupo grupoSelecionado;
 	private List<Grupo> listaGrupos = new ArrayList<Grupo>();
 
 	/** Este metodo cadastra um Grupo.
@@ -66,13 +67,15 @@ public class GrupoBean implements Serializable{
 	/** Este metodo Remove um grupo.
 	 *  @param grupo, Este grupo � o objeto Grupo que voc� ir� remover.
 	 */
-	public void excluir(Grupo grupo){
+	public void excluir(){
 		//Esta linha estou instanciando a interface com sua implementa��o.
 		IGrupo grupos = this.repositorios.getGrupos();
 		//Esta linha remove o grupo.
-		grupos.remover(grupo);
+		grupos.remover(grupoSelecionado);
 		//Atualizar a lista de grupos
-		this.listar();
+		
+		grupoSelecionado = null;
+		listar();
 	}
 
 	/** Este metodo lista todos os grupos cadastrados.
@@ -98,6 +101,26 @@ public class GrupoBean implements Serializable{
 		}
 	}
 	
+	public void edicao(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("GrupoEdicao.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public Grupo getGrupoSelecionado() {
+		return grupoSelecionado;
+	}
+
+	public void setGrupoSelecionado(Grupo grupoSelecionado) {
+		this.grupoSelecionado = grupoSelecionado;
+	}
+
 	public Grupo getGrupo() {
 		return grupo;
 	}

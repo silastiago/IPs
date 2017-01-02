@@ -11,17 +11,44 @@
 		
 		<h:form id="frm">
 			
-			<p:toolbar>
+			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{GrupoBean.novo()}"
 						process="@this" />
+						
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton  value="Editar" icon="ui-icon-pencil" title="Editar"
+						action="#{GrupoBean.edicao()}" process="@this"
+						disabled="#{GrupoBean.grupoSelecionado == null}" >
+						<f:setPropertyActionListener
+							value="#{GrupoBean.grupoSelecionado}"
+							target="#{GrupoBean.grupo}" />
+					</p:commandButton>
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
+						process="@this" update="tabela_grupos toolbar"
+						action="#{GrupoBean.excluir}"
+						disabled="#{GrupoBean.grupoSelecionado == null}" />	
+						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable var="grupo" value="#{GrupoBean.listar()}"
+			<p:dataTable id="tabela_grupos" var="grupo" value="#{GrupoBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" emptyMessage="Nenhum grupo Cadastrado">>	
+				columnClasses="nome" emptyMessage="Nenhum grupo Cadastrado"
+				selection="#{GrupoBean.grupoSelecionado}"
+				selectionMode="single" rowKey="#{grupo.codigo}">	
+			
+			<p:ajax event="rowSelect" update=":frm:toolbar" />
+			<p:ajax event="rowUnselect" update=":frm:toolbar" />
 			
 			<p:column filterBy="#{grupo.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">

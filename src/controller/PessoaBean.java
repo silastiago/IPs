@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,7 +18,7 @@ import util.FacesUtil;
 import util.Repositorios;
 
 @ManagedBean(name="PessoaBean")
-@RequestScoped
+@ViewScoped
 public class PessoaBean implements Serializable{
 
 	private Repositorios repositorios = new Repositorios();
@@ -69,7 +69,7 @@ public class PessoaBean implements Serializable{
 	}
 
 
-	public void excluir(Pessoa pessoa){
+	public void excluir(){
 		IPessoa pessoas = this.repositorios.getPessoas();
 		pessoas.remover(pessoaSelecionada);
 		pessoaSelecionada = null;
