@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import model.Delegacia;
@@ -14,7 +15,7 @@ import repository.IDelegacia;
 import util.Repositorios;
 
 @ManagedBean(name="DelegaciaBean")
-@RequestScoped
+@ViewScoped
 public class DelegaciaBean implements Serializable{
 
 	private Delegacia delegacia = new Delegacia();
@@ -68,7 +69,7 @@ public class DelegaciaBean implements Serializable{
 		
 		//Atualizar a lista de grupos
 		
-		delegaciaSelecionada = null;
+		//delegaciaSelecionada = null;
 		listar();
 	}
 	
