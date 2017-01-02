@@ -19,13 +19,6 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton value="Listar" icon="ui-icon-search"
-						action="#{EquipamentoBean.listarDelegacias()}" update="@form" />
-
-					<span class="ui-separator"> <span
-						class="ui-icon ui-icon-grip-dotted-vertical" />
-					</span>
-
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
 						title="Editar" action="#{EquipamentoBean.edicao()}"
 						process="@this"
@@ -50,7 +43,7 @@
 			</p:toolbar>
 
 			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid"
+				<p:panelGrid id="capaPanel" columns="2" layout="grid"
 					style="margin-top: 20px; margin-bottom: 40px"
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-10">
@@ -63,6 +56,17 @@
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
 
+					<!-- 
+					<p:commandButton action="#{switchBean.voltar()}"  value="Voltar" styleClass="btn btn-warning" />
+					 -->
+				</p:panelGrid>
+				
+				<p:panelGrid  columns="4" layout="grid"
+					style="margin-top: 20px; margin-bottom: 40px"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
+				<p:commandButton value="Listar" icon="ui-icon-search"
+						action="#{EquipamentoBean.listarDelegacias()}" update="@form" />
 				</p:panelGrid>
 			</div>
 
@@ -110,7 +114,7 @@
 					<h:outputText value="#{equipamento.delegacia.nome}" />
 				</p:column>
 
-				<!-- 
+				
 				<p:column style="text-align: center; width:3%">
 					<h:link outcome="EquipamentoEdicao" value="Editar">
 						<i class="fa-desktop"></i>
@@ -124,7 +128,7 @@
 						onclick="if (!confirm('Confirmar a exclusão desta Equipamento ? ')) return false" />
 					<i class="icon-remove-sign"></i>
 				</p:column>
-				 -->
+				
 
 			</p:dataTable>
 		</h:form>
