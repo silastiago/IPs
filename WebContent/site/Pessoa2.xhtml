@@ -10,44 +10,18 @@
 		
 		<h:form id="frm">
 			
-			<p:toolbar id="toolbar">
+			<p:toolbar>
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{PessoaBean.novo()}"
 						process="@this" />
-						
-					<span class="ui-separator"> <span
-						class="ui-icon ui-icon-grip-dotted-vertical" />
-					</span>
-
-					<p:commandButton  value="Editar" icon="ui-icon-pencil" title="Editar"
-						action="#{PessoaBean.edicao()}" process="@this"
-						disabled="#{PessoaBean.pessoaSelecionada == null}" >
-						<f:setPropertyActionListener
-							value="#{PessoaBean.pessoaSelecionada}"
-							target="#{PessoaBean.pessoa}" />
-					</p:commandButton>
-
-					<span class="ui-separator"> <span
-						class="ui-icon ui-icon-grip-dotted-vertical" />
-					</span>
-
-					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
-						process="@this" update="tabela_pessoas toolbar"
-						action="#{PessoaBean.excluir}"
-						disabled="#{PessoaBean.pessoaSelecionada == null}" />	
-						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="tabela_pessoas" var="pessoa" value="#{PessoaBean.listar()}"
+			<p:dataTable var="pessoa" value="#{PessoaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" emptyMessage="Nenhuma pessoa Cadastrada"
-				selection="#{PessoaBean.pessoaSelecionada}"
-				selectionMode="single" rowKey="#{pessoa.codigo}">>
+				columnClasses="nome" emptyMessage="Nenhuma pessoa Cadastrada">>
 				
-			<p:ajax event="rowSelect" update=":frm:toolbar" />
-			<p:ajax event="rowUnselect" update=":frm:toolbar" />	
 				
 			<p:column filterBy="#{pessoa.login}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
@@ -57,12 +31,27 @@
 					<h:outputText value="#{pessoa.login}" />
 			</p:column>
 			
+			
 			<p:column filterBy="#{pessoa.grupo.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
 					<f:facet name="header">
 						<h:outputText value="Grupo" />
 					</f:facet>
 					<h:outputText value="#{pessoa.grupo.nome}" />
+			</p:column>	
+				
+			<p:column style="text-align: center; width:3%">
+					<h:link outcome="PessoaEdicao" value="Editar">
+					<i class="icon-edit"></i>
+					<f:param name="codigo"  value="#{pessoa.codigo}"/>
+					</h:link>
+			</p:column>	
+			
+			<p:column style="text-align: center; width:3%">
+				<h:commandLink value="Excluir"
+				 action="#{PessoaBean.excluir(pessoa)}"
+				 onclick="if (!confirm('Confirmar a exclusão desta Pessoa ? ')) return false"/>
+				 <i class="icon-remove-sign"></i>
 			</p:column>
 			
 			</p:dataTable>		

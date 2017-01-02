@@ -81,10 +81,7 @@ public class EquipamentoBean implements Serializable{
 	}
 
 	public List<Equipamento> listarDelegacias(){
-		System.out.println("ID Delegacia: "+ equipamento.getDelegacia().getCodigo());
-		System.out.println("Delegacia: "+ equipamento.getDelegacia().getNome());
 		listaEquipamento = repositorios.getEquipamentos().listar(equipamento.getDelegacia().getCodigo());
-		
 		return listaEquipamento;
 	}
 

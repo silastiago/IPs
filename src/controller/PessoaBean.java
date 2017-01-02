@@ -23,8 +23,13 @@ public class PessoaBean implements Serializable{
 
 	private Repositorios repositorios = new Repositorios();
 	private Pessoa pessoa = new Pessoa();
+	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 
+	public PessoaBean() {
+		listaPessoas = this.listar();
+	}
+	
 	private HttpServletRequest getRequest() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		return (HttpServletRequest) context.getExternalContext().getRequest();
@@ -51,7 +56,7 @@ public class PessoaBean implements Serializable{
 		IPessoa pessoas = this.repositorios.getPessoas();
 		String senha = this.pessoa.getSenha();
 		this.pessoa.setSenha(FacesUtil.md5(senha));
-		pessoas.salvar(this.pessoa);
+		pessoas.salvar(pessoa);
 
 		FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -66,8 +71,9 @@ public class PessoaBean implements Serializable{
 
 	public void excluir(Pessoa pessoa){
 		IPessoa pessoas = this.repositorios.getPessoas();
-		pessoas.remover(pessoa);
-		this.listar();
+		pessoas.remover(pessoaSelecionada);
+		pessoaSelecionada = null;
+		listar();
 	}
 
 	public void logar(){
@@ -160,17 +166,22 @@ public class PessoaBean implements Serializable{
 		}
 	}
 
+	
+	
+	public Pessoa getPessoaSelecionada() {
+		return pessoaSelecionada;
+	}
+
+	public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
+		this.pessoaSelecionada = pessoaSelecionada;
+	}
+
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
 	public void setPessoa(Pessoa pessoa) throws CloneNotSupportedException {
 		this.pessoa = pessoa;
-		if (this.pessoa == null) {
-			this.pessoa = new Pessoa();
-		}else {
-			this.pessoa = (Pessoa) pessoa.clone();
-		}
 	}
 
 	public List<Pessoa> getListaPessoas() {

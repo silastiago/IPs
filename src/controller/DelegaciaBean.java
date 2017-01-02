@@ -18,9 +18,14 @@ import util.Repositorios;
 public class DelegaciaBean implements Serializable{
 
 	private Delegacia delegacia = new Delegacia();
+	private Delegacia delegaciaSelecionada;
 	private List<Delegacia> listaDelegacia = new ArrayList<Delegacia>();
 	private Repositorios repositorios = new Repositorios();
 
+	public DelegaciaBean() {
+		listaDelegacia = listar();
+	}
+	
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IDelegacia delegacias = this.repositorios.getDelegacias();
@@ -53,14 +58,19 @@ public class DelegaciaBean implements Serializable{
 		}
 	}
 	
-	public void excluir(Delegacia delegacia){
+	public void excluir(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IDelegacia delegacias = this.repositorios.getDelegacias();
 		//Esta linha salva a entidade grupo.
-		delegacias.remover(delegacia);
+		delegacias.remover(delegaciaSelecionada);
+		System.out.println("ID Delegacia Selecionada: "+ delegaciaSelecionada.getCodigo());
+		System.out.println("Delegacia Selecionada: "+ delegaciaSelecionada.getNome());
+		
 		//Atualizar a lista de grupos
-		this.listar();
-	}	
+		
+		delegaciaSelecionada = null;
+		listar();
+	}
 	
 	public List<Delegacia> listar(){
 		//Esta linha estou instanciando a interface com sua implementa��o.
@@ -80,6 +90,26 @@ public class DelegaciaBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void edicao(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("DelegaciaEdicao.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public Delegacia getDelegaciaSelecionada() {
+		return delegaciaSelecionada;
+	}
+
+	public void setDelegaciaSelecionada(Delegacia delegaciaSelecionada) {
+		this.delegaciaSelecionada = delegaciaSelecionada;
 	}
 
 	public Delegacia getDelegacia() {
