@@ -21,7 +21,7 @@
 			<p:dataTable var="grupo" value="#{GrupoBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >	
+				columnClasses="nome" emptyMessage="Nenhum grupo Cadastrado">>	
 			
 			<p:column filterBy="#{grupo.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">

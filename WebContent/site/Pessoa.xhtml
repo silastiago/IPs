@@ -20,7 +20,7 @@
 			<p:dataTable var="pessoa" value="#{PessoaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" >
+				columnClasses="nome" emptyMessage="Nenhuma pessoa Cadastrada">>
 				
 				
 			<p:column filterBy="#{pessoa.login}"  style="text-align: center; width:5%" 

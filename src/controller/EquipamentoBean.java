@@ -8,9 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 
-import model.Delegacia;
 import model.Equipamento;
 import repository.IEquipamento;
 import util.Repositorios;
@@ -20,15 +18,20 @@ import util.Repositorios;
 public class EquipamentoBean implements Serializable{
 
 	private Equipamento equipamento = new Equipamento();
-	private List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
+	private List<Equipamento> listaEquipamento;
 	private Repositorios repositorios = new Repositorios();
+	
+	public EquipamentoBean() {
+		listaEquipamento  = new ArrayList<Equipamento>();
+	}
+	
 	
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
-		
+
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
@@ -44,7 +47,7 @@ public class EquipamentoBean implements Serializable{
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		//Esta linha salva a entidade grupo.
 		equipamentos.salvar(equipamento);
-		
+
 		int codigoDelegacia = equipamento.getDelegacia().getCodigo();
 		FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -54,15 +57,15 @@ public class EquipamentoBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void excluir(Equipamento equipamento){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
-		
+
 		System.out.println("Equipamento: "+ equipamento.getNome());
-		
+
 		//Esta linha salva a entidade grupo.
 		equipamentos.remover(equipamento);		
 
@@ -77,20 +80,30 @@ public class EquipamentoBean implements Serializable{
 
 	}
 
-	public List<Equipamento> listar(int codigo){
+	public List<Equipamento> listarDelegacias(){
+		System.out.println("ID Delegacia: "+ equipamento.getDelegacia().getCodigo());
+		System.out.println("Delegacia: "+ equipamento.getDelegacia().getNome());
+		listaEquipamento = repositorios.getEquipamentos().listar(equipamento.getDelegacia().getCodigo());
+		
+		return listaEquipamento;
+	}
+
+
+	public List<Equipamento> listar(){
+
 		//Esta linha estou instanciando a interface com sua implementa��o.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
 		if (this.equipamento == null) {
 			listaEquipamento = null;
 		}else {
 			//Esta linha lista os grupos e joga em uma lista de grupos.
-			listaEquipamento = equipamentos.listar(codigo);
+			listaEquipamento = equipamentos.listar(this.equipamento.getDelegacia().getCodigo());
 		}
-		
+
 		//Retorna a lista de grupos
 		return listaEquipamento;
 	}
-	
+
 	public void novo(){
 		FacesContext fc = FacesContext.getCurrentInstance();
 

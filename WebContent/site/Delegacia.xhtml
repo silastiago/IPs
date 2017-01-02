@@ -20,7 +20,7 @@
 			<p:dataTable var="delegacia" value="#{DelegaciaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome">				
+				columnClasses="nome" emptyMessage="Nenhuma delegacia Cadastrada">				
 				
 			<p:column filterBy="#{delegacia.nome}"  style="text-align: center; width:5%" 
 					filterMatchMode="startsWith">
@@ -33,12 +33,6 @@
 			<p:column style="text-align: center; width:3%">
 					<h:link outcome="DelegaciaEdicao" value="Editar">
 					<i class="icon-edit"></i>
-					<f:param name="codigo"  value="#{delegacia.codigo}"/>
-					</h:link>
-			</p:column>
-			
-			<p:column style="text-align: center; width:8%">
-					<h:link outcome="Equipamento" value="Listar computadores cadastrados">
 					<f:param name="codigo"  value="#{delegacia.codigo}"/>
 					</h:link>
 			</p:column>
