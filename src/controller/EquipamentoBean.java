@@ -116,7 +116,7 @@ public class EquipamentoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("EquipamentoEdicao.xhtml");
+			fc.getExternalContext().redirect("EquipamentoEdicao.xhtml?codigo="+equipamentoSelecionado.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

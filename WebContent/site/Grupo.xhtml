@@ -20,13 +20,12 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton  value="Editar" icon="ui-icon-pencil" title="Editar"
-						action="#{GrupoBean.edicao()}" process="@this"
-						disabled="#{GrupoBean.grupoSelecionado == null}" >
-						<f:setPropertyActionListener
-							value="#{GrupoBean.grupoSelecionado}"
-							target="#{GrupoBean.grupo}" />
-					</p:commandButton>
+					<p:commandLink  value="Editar" 
+						title="Editar" action="#{GrupoBean.edicao()}"
+						process="@this"
+						disabled="#{GrupoBean.grupoSelecionado == null}">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</p:commandLink>
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -63,13 +62,6 @@
 					<i class="icon-edit"></i>
 					<f:param name="codigo"  value="#{grupo.codigo}"/>
 					</h:link>
-			</p:column>	
-			
-			<p:column style="text-align: center; width:3%">
-				<h:commandLink value="Excluir"
-				 action="#{GrupoBean.excluir(grupo)}"
-				 onclick="if (!confirm('Confirmar a exclusão deste Grupo ? ')) return false"/>
-				 <i class="icon-remove-sign"></i>
 			</p:column>
 			
 			</p:dataTable>		

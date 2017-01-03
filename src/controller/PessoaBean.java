@@ -166,7 +166,16 @@ public class PessoaBean implements Serializable{
 		}
 	}
 
-	
+	public void edicao(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("PessoaEdicao.xhtml?codigo="+pessoaSelecionada.getCodigo());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public Pessoa getPessoaSelecionada() {
 		return pessoaSelecionada;

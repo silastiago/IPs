@@ -19,14 +19,12 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton value="Editar" icon="ui-icon-pencil"
+					<p:commandLink  value="Editar" 
 						title="Editar" action="#{EquipamentoBean.edicao()}"
 						process="@this"
 						disabled="#{EquipamentoBean.equipamentoSelecionado == null}">
-						<f:setPropertyActionListener
-							value="#{EquipamentoBean.equipamentoSelecionado}"
-							target="#{EquipamentoBean.equipamento}"  />
-					</p:commandButton>
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</p:commandLink>
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -102,23 +100,7 @@
 						<h:outputText value="Delegacia" />
 					</f:facet>
 					<h:outputText value="#{equipamento.delegacia.nome}" />
-				</p:column>
-
-				
-				<p:column style="text-align: center; width:3%">
-					<h:link outcome="EquipamentoEdicao" value="Editar">
-						<i class="fa-desktop"></i>
-						<f:param name="codigo" value="#{equipamento.codigo}" />
-					</h:link>
-				</p:column>
-
-				<p:column style="text-align: center; width:3%">
-					<h:commandLink value="Excluir"
-						action="#{EquipamentoBean.excluir(equipamento)}"
-						onclick="if (!confirm('Confirmar a exclusão desta Equipamento ? ')) return false" />
-					<i class="icon-remove-sign"></i>
-				</p:column>
-				
+				</p:column>			
 
 			</p:dataTable>
 		</h:form>

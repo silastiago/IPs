@@ -18,13 +18,12 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton  value="Editar" icon="ui-icon-pencil" title="Editar"
-						action="#{DelegaciaBean.edicao()}" process="@this"
-						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" >
-						<f:setPropertyActionListener
-							value="#{DelegaciaBean.delegaciaSelecionada}"
-							target="#{DelegaciaBean.delegacia}" />
-					</p:commandButton>
+					<p:commandLink  value="Editar" 
+						title="Editar" action="#{DelegaciaBean.edicao()}"
+						process="@this"
+						disabled="#{DelegaciaBean.delegaciaSelecionada == null}">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</p:commandLink>
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />

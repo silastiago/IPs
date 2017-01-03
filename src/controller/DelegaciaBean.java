@@ -97,7 +97,7 @@ public class DelegaciaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("DelegaciaEdicao.xhtml");
+			fc.getExternalContext().redirect("DelegaciaEdicao.xhtml?codigo="+delegaciaSelecionada.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
