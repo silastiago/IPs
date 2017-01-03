@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
@@ -40,7 +42,8 @@ public class Equipamento implements Serializable{
 		this.nome = nome;
 	}
 	
-	@Column
+	@NotNull(message="Tipo deve ser informado")
+	@Column(nullable=false)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -57,6 +60,8 @@ public class Equipamento implements Serializable{
 		this.ip = ip;
 	}
 	
+	@NotBlank
+	@NotNull(message="Deve ser informado a delegacia")
 	@ManyToOne
 	@JoinColumn(name="codigo_delegacia", referencedColumnName="codigo")
 	public Delegacia getDelegacia() {
