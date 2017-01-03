@@ -67,15 +67,24 @@ public class EquipamentoImpl implements IEquipamento{
 		sessao.delete(equipamento);		
 	}
 
-
-
 	@Override
-	public List<Equipamento> porIP(Equipamento equipamento) {
+	public List<Equipamento> validacaoIPCadastro(Equipamento equipamento) {
 		Query query = sessao.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and ip = :ip");
 		query.setParameter("codigo_delegacia", equipamento.getDelegacia().getCodigo());
 		query.setParameter("ip", equipamento.getIp());
 		List<Equipamento> results = query.list();
 		return results;
 	}
+	
+	@Override
+	public List<Equipamento> validacaoIPEdicao(Equipamento equipamento) {
+		Query query = sessao.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and ip = :ip  and not codigo = :codigo");
+		query.setParameter("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		query.setParameter("ip", equipamento.getIp());
+		query.setParameter("codigo", equipamento.getCodigo());
+		List<Equipamento> results = query.list();
+		return results;
+	}
+	
 
 }

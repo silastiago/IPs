@@ -31,10 +31,10 @@ public class EquipamentoBean implements Serializable{
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
-		List<Equipamento> listaEquipamentos = equipamentos.porIP(equipamento);
+		List<Equipamento> listaEquipamentos = equipamentos.validacaoIPCadastro(equipamento);
 		if (listaEquipamentos.size() > 0) {
 			for (int i = 0; i < listaEquipamentos.size(); i++) {
-				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome()));
+				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome() + " por favor utilizar outro ip"));
 			}
 		}else{
 
@@ -55,10 +55,10 @@ public class EquipamentoBean implements Serializable{
 	public void editar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
-		List<Equipamento> listaEquipamentos = equipamentos.porIP(equipamento);
+		List<Equipamento> listaEquipamentos = equipamentos.validacaoIPEdicao(equipamento);
 		if (listaEquipamentos.size() > 0) {
 			for (int i = 0; i < listaEquipamentos.size(); i++) {
-				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome()));
+				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome() + " por favor utilizar outro ip"));
 			}
 		}else{
 
