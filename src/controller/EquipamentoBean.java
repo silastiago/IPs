@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -22,44 +22,58 @@ public class EquipamentoBean implements Serializable{
 	private Equipamento equipamentoSelecionado;
 	private List<Equipamento> listaEquipamento;
 	private Repositorios repositorios = new Repositorios();
-	
+
 	public EquipamentoBean() {
 		listaEquipamento  = new ArrayList<Equipamento>();
 	}
-	
-	
+
+
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
-		//Esta linha salva a entidade grupo.
-		equipamentos.salvar(equipamento);
+		List<Equipamento> listaEquipamentos = equipamentos.porIP(equipamento);
+		if (listaEquipamentos.size() > 0) {
+			for (int i = 0; i < listaEquipamentos.size(); i++) {
+				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome()));
+			}
+		}else{
 
-		FacesContext fc = FacesContext.getCurrentInstance();
+			//Esta linha salva a entidade grupo.
+			equipamentos.salvar(equipamento);
 
-		try {
-			fc.getExternalContext().redirect("Equipamento.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesContext fc = FacesContext.getCurrentInstance();
+
+			try {
+				fc.getExternalContext().redirect("Equipamento.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void editar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
-		//Esta linha salva a entidade grupo.
-		equipamentos.salvar(equipamento);
+		List<Equipamento> listaEquipamentos = equipamentos.porIP(equipamento);
+		if (listaEquipamentos.size() > 0) {
+			for (int i = 0; i < listaEquipamentos.size(); i++) {
+				FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Equipamento com o ip já cadastrado com o nome da maquina: " + listaEquipamentos.get(i).getNome()));
+			}
+		}else{
 
-		int codigoDelegacia = equipamento.getDelegacia().getCodigo();
-		FacesContext fc = FacesContext.getCurrentInstance();
+			//Esta linha salva a entidade grupo.
+			equipamentos.salvar(equipamento);
 
-		try {
-			fc.getExternalContext().redirect("Equipamento.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesContext fc = FacesContext.getCurrentInstance();
+
+			try {
+				fc.getExternalContext().redirect("Equipamento.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	public void excluir(){
@@ -122,7 +136,7 @@ public class EquipamentoBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Equipamento getEquipamentoSelecionado() {
 		return equipamentoSelecionado;
 	}

@@ -40,4 +40,7 @@ public interface IEquipamento {
 	*   	
 	*/
 	public void remover(Equipamento equipamento);
+	
+	
+	public List<Equipamento> porIP(Equipamento equipamento);
 }

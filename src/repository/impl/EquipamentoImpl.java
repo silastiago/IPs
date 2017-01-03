@@ -21,6 +21,7 @@ public class EquipamentoImpl implements IEquipamento{
 	}
 	
 	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Equipamento> listar(int codigo_delegacia) {
@@ -30,7 +31,19 @@ public class EquipamentoImpl implements IEquipamento{
 		listaEquipamento = query.list();
 		return listaEquipamento;
 	}
+	
+	
 
+	/*
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Equipamento> listar(int codigo_delegacia) {
+		List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
+		listaEquipamento = this.sessao.createCriteria(Equipamento.class).add(Restrictions.eq("codigo_delegacia", codigo_delegacia)).list();
+		return listaEquipamento;
+	}
+	*/
+	
 	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<Equipamento> listar() {
@@ -52,6 +65,17 @@ public class EquipamentoImpl implements IEquipamento{
 	@Override
 	public void remover(Equipamento equipamento) {
 		sessao.delete(equipamento);		
+	}
+
+
+
+	@Override
+	public List<Equipamento> porIP(Equipamento equipamento) {
+		Query query = sessao.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and ip = :ip");
+		query.setParameter("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		query.setParameter("ip", equipamento.getIp());
+		List<Equipamento> results = query.list();
+		return results;
 	}
 
 }
