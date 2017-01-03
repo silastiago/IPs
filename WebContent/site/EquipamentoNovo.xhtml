@@ -24,16 +24,14 @@
 			<p:messages  showDetail="true" autoUpdate="true" closable="true" />
 
 			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="6" layout="grid"
+				<p:panelGrid id="capaPanel" columns="4" layout="grid"
 					style="margin-top: 20px; margin-bottom: 40px"
 					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-1, ui-grid-col-2, ui-grid-col-3, ui-grid-col-1">
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}"
-						placeholder="Aqui fica o nome do Equipamento" >
-					</p:inputText>
-					<p:messages  for="message" showDetail="true" autoUpdate="true" closable="true" />
+						placeholder="Aqui fica o nome do Equipamento" />
 
 					<p:outputLabel value="Tipo do equipamento" for="tipo" />
 					<p:selectOneMenu id="tipo"
@@ -42,13 +40,10 @@
 						<f:selectItem itemLabel="Computador" itemValue="Computador" />
 						<f:selectItem itemLabel="Impressora" itemValue="Impressora" />	
 					</p:selectOneMenu>
-					<p:messages  for="message" showDetail="true" autoUpdate="true" closable="true" />
 					
 					<p:outputLabel value="Ip" for="ip" />
 					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}"
-						placeholder="Aqui fica o ip do Equipamento">
-					</p:inputText>	
-					<p:messages  for="message" showDetail="true" autoUpdate="true" closable="true" />
+						placeholder="Aqui fica o ip do Equipamento" />
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
@@ -57,8 +52,8 @@
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
-					<p:messages  for="message" showDetail="true" autoUpdate="true" closable="true" />
-
+					
+				
 				</p:panelGrid>
 			</div>
 		</h:form>
