@@ -34,6 +34,7 @@ public class Equipamento implements Serializable{
 		this.codigo = codigo;
 	}
 	
+	@NotNull(message = "Nome deve ser informado")
 	@Column
 	public String getNome() {
 		return nome;
@@ -42,8 +43,9 @@ public class Equipamento implements Serializable{
 		this.nome = nome;
 	}
 	
-	@NotNull(message="Tipo deve ser informado")
-	@Column(nullable=false)
+	@NotNull(message = "Tipo deve ser informado")
+	@NotEmpty(message = "Tipo deve ser informado")
+	@Column
 	public String getDescricao() {
 		return descricao;
 	}
@@ -60,8 +62,7 @@ public class Equipamento implements Serializable{
 		this.ip = ip;
 	}
 	
-	@NotBlank
-	@NotNull(message="Deve ser informado a delegacia")
+	@NotNull(message = "Delegacia deve ser informada")
 	@ManyToOne
 	@JoinColumn(name="codigo_delegacia", referencedColumnName="codigo")
 	public Delegacia getDelegacia() {

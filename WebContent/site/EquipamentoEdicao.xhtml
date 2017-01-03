@@ -21,45 +21,41 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<p:messages for="message" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages  showDetail="true" autoUpdate="true" closable="true" />
 
 			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="6" layout="grid"
+				<p:panelGrid id="capaPanel" columns="4" layout="grid"
 					style="margin-top: 20px; margin-bottom: 40px"
 					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-1, ui-grid-col-2, ui-grid-col-3, ui-grid-col-1">
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}"
-						placeholder="Aqui fica o nome do Equipamento" >
-					</p:inputText>
-					<p:message for="nome" showDetail="true" autoUpdate="true" closable="true"/>
+						placeholder="Aqui fica o nome do Equipamento" />
 
-
-					<p:outputLabel value="Tipo do equipamento" for="tipo" />
-					<p:selectOneMenu id="tipo"
-						value="#{EquipamentoBean.equipamento.descricao}" label="Tipo">
-						<f:selectItem itemLabel="Selecione o Tipo do Equipamento" />
+					<p:outputLabel value="Descricao" for="descricao" />
+					<p:selectOneMenu id="descricao"
+						value="#{EquipamentoBean.equipamento.descricao}" label="Descricao">
+						<f:selectItem itemLabel="Selecione o Tipo do Equipamento" noSelectionOption="true" />
 						<f:selectItem itemLabel="Computador" itemValue="Computador" />
-						<f:selectItem itemLabel="Impressora" itemValue="Impressora" />	
+						<f:selectItem itemLabel="Impressora" itemValue="Impressora" />
 					</p:selectOneMenu>
-					<p:message for="tipo" showDetail="true" autoUpdate="true" closable="true"/>
 
 
 					<p:outputLabel value="Ip" for="ip" />
 					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}"
 						placeholder="Aqui fica o ip do Equipamento">
 					</p:inputText>
-					<p:message for="ip" showDetail="true" autoUpdate="true" closable="true"/>
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
-						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia">
+						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia"
+						required="true">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
 						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
-					<p:message for="delegacia" showDetail="true" autoUpdate="true" closable="true"/>
+
 
 				</p:panelGrid>
 			</div>

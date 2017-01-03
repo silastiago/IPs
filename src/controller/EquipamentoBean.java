@@ -27,7 +27,6 @@ public class EquipamentoBean implements Serializable{
 		listaEquipamento  = new ArrayList<Equipamento>();
 	}
 
-
 	public void cadastrar(){
 		//Esta linha estou instanciando a interface com sua implementacao.
 		IEquipamento equipamentos = this.repositorios.getEquipamentos();
