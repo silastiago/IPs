@@ -34,8 +34,8 @@ public class Equipamento implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	@NotNull(message = "Nome deve ser informado")
-	@Column
+	@NotNull(message = "Nome da maquina deve ser informado")
+	@Column()
 	public String getNome() {
 		return nome;
 	}
@@ -43,8 +43,7 @@ public class Equipamento implements Serializable{
 		this.nome = nome;
 	}
 	
-	@NotNull(message = "Tipo deve ser informado")
-	@NotEmpty(message = "Tipo deve ser informado")
+	@NotNull(message = "Tipo da maquina deve ser informado")
 	@Column
 	public String getDescricao() {
 		return descricao;
