@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table
 public class Delegacia implements Serializable{
@@ -24,6 +26,7 @@ public class Delegacia implements Serializable{
 		this.codigo = codigo;
 	}
 	
+	@NotEmpty(message = "Nome da delegacia deve ser informada")
 	@Column
 	public String getNome() {
 		return nome;

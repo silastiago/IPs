@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /** Esta Classe que possui os metodos de acesso getter e setters que representa grupo de usuarios, 
- * e também possui o mapeamento relacional das tabelas via hibernate, da entidade Grupo.
+ * e tambï¿½m possui o mapeamento relacional das tabelas via hibernate, da entidade Grupo.
 *   
 * @author silas
 *
@@ -34,6 +36,7 @@ public class Grupo implements Serializable{
 		this.codigo = codigo;
 	}
 
+	@NotEmpty(message = "Nome do grupo deve ser informado")
 	@Column
 	public String getNome() {
 		return nome;

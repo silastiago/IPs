@@ -9,9 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /** Esta Classe que possui os metodos de acesso getter e setters que representa um usuario do sistema, 
- * e também possui o mapeamento relacional das tabelas via hibernate, da entidade Pessoa.
+ * e tambï¿½m possui o mapeamento relacional das tabelas via hibernate, da entidade Pessoa.
 *   
 * @author silas
 *
@@ -34,6 +37,8 @@ public class Pessoa implements Serializable, Cloneable{
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
+	
+	@NotEmpty(message = "Login deve ser informado")
 	@Column(name="login")
 	public String getLogin() {
 		return login;
@@ -41,6 +46,8 @@ public class Pessoa implements Serializable, Cloneable{
 	public void setLogin(String login) {
 		this.login = login.toUpperCase();
 	}
+	
+	@NotEmpty(message = "Senha deve ser informada")
 	@Column(name="senha")
 	public String getSenha() {
 		return senha;
@@ -49,6 +56,7 @@ public class Pessoa implements Serializable, Cloneable{
 		this.senha = senha;
 	}
 	
+	@NotNull(message = "Grupo deve ser informado")
 	@ManyToOne
 	@JoinColumn(name="codigo_grupo", referencedColumnName="codigo")
 	public Grupo getGrupo() {

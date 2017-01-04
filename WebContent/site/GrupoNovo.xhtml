@@ -14,11 +14,11 @@
 			<p:toolbar>
 				<p:toolbarGroup>
 					<p:commandButton value="Salvar" action="#{GrupoBean.cadastrar()}"
-						process="@this capaPanel" update="@form" />
+						process="@this capaPanel" />
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:messages autoUpdate="false" />
+			<p:messages  showDetail="true" autoUpdate="true" closable="true" />
 			
 			<div class="ui-fluid">
 				<p:panelGrid id="capaPanel" columns="4" layout="grid" 

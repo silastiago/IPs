@@ -13,11 +13,11 @@
 			<p:toolbar>
 				<p:toolbarGroup>
 					<p:commandButton value="Salvar" action="#{PessoaBean.cadastrar()}"
-						process="@this capaPanel" update="@form" />
+						process="@this capaPanel"  />
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:messages autoUpdate="false" />
+			<p:messages  showDetail="true" autoUpdate="true" closable="true" />
 			
 			<div class="ui-fluid">
 				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
@@ -33,7 +33,7 @@
 					
 					<p:outputLabel value="Grupo" for="grupo" />
 					<p:selectOneMenu id="grupo" value="#{PessoaBean.pessoa.grupo}"  label="Grupo">
-						<f:selectItem itemLabel="Selecione o grupo" />
+						<f:selectItem itemLabel="Selecione o grupo" noSelectionOption="true"/>
 						<f:selectItems value="#{GrupoBean.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
 					</p:selectOneMenu>
 					

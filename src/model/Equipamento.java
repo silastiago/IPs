@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -34,7 +33,7 @@ public class Equipamento implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	@NotNull(message = "Nome da maquina deve ser informado")
+	@NotEmpty(message = "Nome da maquina deve ser informado")
 	@Column()
 	public String getNome() {
 		return nome;
