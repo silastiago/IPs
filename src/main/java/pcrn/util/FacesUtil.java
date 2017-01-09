@@ -30,7 +30,8 @@ public class FacesUtil {
 	}
 	
 	public static String md5(String senha) {
-	       MessageDigest m = null;
+	       System.out.println("Senha no metodo util: " + senha);
+			MessageDigest m = null;
 		try {
 			m = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException e) {
@@ -40,7 +41,7 @@ public class FacesUtil {
 	       m.update(senha.getBytes(),0, senha.length());
 	       String hash = new BigInteger(1,m.digest()).toString(16);
 	       //System.out.println("MD5: "+hash);
-	       
+	       System.out.println("Senha criptografada no metodo util: " + hash);
 		return hash;
 	}
 	

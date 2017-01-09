@@ -18,21 +18,22 @@ import pcrn.model.Pessoa;
 import pcrn.service.PessoaService;
 import pcrn.util.FacesUtil;
 
-@Named
+@Named("PessoaBean")
 @ViewScoped
 public class PessoaBean implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private PessoaService pessoaService;
 	
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-
-	public PessoaBean() {
-		listaPessoas = listar();
-	}
 	
 	private HttpServletRequest getRequest() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -42,6 +43,7 @@ public class PessoaBean implements Serializable{
 	public void cadastrar() {
 		
 		String senha = this.pessoa.getSenha();
+		
 		this.pessoa.setSenha(FacesUtil.md5(senha));
 		pessoaService.salvar(pessoa);
 		
@@ -85,8 +87,10 @@ public class PessoaBean implements Serializable{
 		String pagina = "";
 		FacesContext fc = FacesContext.getCurrentInstance();
 
-		String senha = this.pessoa.getSenha();
-		pessoa.setSenha(FacesUtil.md5(senha));		
+		String senha = pessoa.getSenha();
+		System.out.println("Senha no metodo logar: " + senha);
+		pessoa.setSenha(FacesUtil.md5(senha));
+		System.out.println("Senha criptografada no metodo logar: " + pessoa.getSenha());
 
 		if (pessoaService.login(pessoa) == false) {
 			pagina = "login.xhtml?faces-redirect=true";
