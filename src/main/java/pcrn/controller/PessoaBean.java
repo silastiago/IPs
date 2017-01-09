@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -18,8 +19,8 @@ import pcrn.model.Pessoa;
 import pcrn.service.PessoaService;
 import pcrn.util.FacesUtil;
 
-@Named("PessoaBean")
-@ViewScoped
+@Named
+@RequestScoped
 public class PessoaBean implements Serializable{
 
 	

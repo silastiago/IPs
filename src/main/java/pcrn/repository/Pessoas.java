@@ -23,7 +23,7 @@ public class Pessoas implements Serializable, IPessoa{
 	private EntityManager manager;
 
 	public boolean login(Pessoa pessoa) {
-		Query query = manager.createQuery("from Pessoa where login = :codigo and senha = :senha");
+		Query query = manager.createQuery("from Pessoa where login = :login and senha = :senha");
 		query.setParameter("login", pessoa.getLogin());
 		query.setParameter("senha", pessoa.getSenha());
 		if (query.getSingleResult() == null) {
