@@ -29,7 +29,8 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
 						process="@this" update="tabela_delegacias toolbar"
 						action="#{DelegaciaBean.excluir}"
-						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" />				
+						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" 
+						onclick="if (!confirm('Deseja deletar esta Delegacia ? ')) return false"/>				
 
 
 				</p:toolbarGroup>

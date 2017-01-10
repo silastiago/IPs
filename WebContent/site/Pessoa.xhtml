@@ -32,7 +32,8 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
 						process="@this" update="tabela_pessoas toolbar"
 						action="#{PessoaBean.excluir}"
-						disabled="#{PessoaBean.pessoaSelecionada == null}" />	
+						disabled="#{PessoaBean.pessoaSelecionada == null}" 
+						onclick="if (!confirm('Deseja deletar esta Pessoa ? ')) return false"/>	
 						
 				</p:toolbarGroup>
 			</p:toolbar>

@@ -32,7 +32,8 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
 						process="@this" update="tabela_grupos toolbar"
 						action="#{GrupoBean.excluir}"
-						disabled="#{GrupoBean.grupoSelecionado == null}" />	
+						disabled="#{GrupoBean.grupoSelecionado == null}" 
+						onclick="if (!confirm('Deseja deletar este Grupo ? ')) return false"/>	
 						
 				</p:toolbarGroup>
 			</p:toolbar>
