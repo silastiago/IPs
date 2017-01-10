@@ -23,6 +23,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Grupo implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer codigo;
 	private String nome;
 	

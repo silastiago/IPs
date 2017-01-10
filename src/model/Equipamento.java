@@ -18,6 +18,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table
 public class Equipamento implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer codigo;
 	private String nome;
 	private String descricao;

@@ -65,6 +65,7 @@ public class Pessoa implements Serializable, Cloneable{
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

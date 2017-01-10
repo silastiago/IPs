@@ -47,11 +47,12 @@ public class FiltroSeguranca implements Filter {
 	       HttpSession ses = req.getSession(false);
 	       //String da requisição http
 	       String reqURI = req.getRequestURI();
+	       
 	       //Comparando se os atributos de sessão estão nulos, se não forem o sistema libera o acesso para a pagina solicitada
 			//senão redireciona o usuario para pagina de login do sistema.
 	       if (  (ses != null && ses.getAttribute("usuario") != null && ses.getAttribute("senha") != null)
 	                                  || reqURI.indexOf("/site/") >= 0 && reqURI.contains("javax.faces.resource") )
-	              chain.doFilter(request, response);
+	    	   	chain.doFilter(request, response);
 	       else   
 	       	//Usuario não tem sessao aberta ainda, portanto o servidor redireciona ele para a pagina de login.
 	              res.sendRedirect(req.getContextPath() + "/Login.xhtml");  
