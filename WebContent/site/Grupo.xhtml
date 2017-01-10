@@ -15,17 +15,15 @@
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{GrupoBean.novo()}"
 						process="@this" />
-						
+
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandLink  value="Editar" 
-						title="Editar" action="#{GrupoBean.edicao()}"
-						process="@this"
-						disabled="#{GrupoBean.grupoSelecionado == null}">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</p:commandLink>
+					<p:commandButton value="Editar" icon="ui-icon-pencil" title="Editar" 
+						process="@this" 
+						action="#{GrupoBean.edicao()}"
+						disabled="#{GrupoBean.grupoSelecionado == null}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />

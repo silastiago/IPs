@@ -19,12 +19,9 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandLink  value="Editar" 
-						title="Editar" action="#{EquipamentoBean.edicao()}"
-						process="@this"
-						disabled="#{EquipamentoBean.equipamentoSelecionado == null}">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</p:commandLink>
+					<p:commandButton value="Editar" icon="ui-icon-pencil"
+						title="Excluir" process="@this" action="#{EquipamentoBean.edicao()}"
+						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -35,6 +32,7 @@
 						update="tabela_equipamentos toolbar"
 						action="#{EquipamentoBean.excluir}"
 						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
+						
 				</p:toolbarGroup>
 			</p:toolbar>
 

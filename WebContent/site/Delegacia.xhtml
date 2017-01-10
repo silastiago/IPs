@@ -18,12 +18,9 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandLink  value="Editar" 
-						title="Editar" action="#{DelegaciaBean.edicao()}"
-						process="@this"
-						disabled="#{DelegaciaBean.delegaciaSelecionada == null}">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</p:commandLink>
+					<p:commandButton value="Editar" icon="ui-icon-pencil" title="Editar" 
+						process="@this" action="#{DelegaciaBean.edicao()}"
+						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -32,8 +29,7 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
 						process="@this" update="tabela_delegacias toolbar"
 						action="#{DelegaciaBean.excluir}"
-						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" />
-					
+						disabled="#{DelegaciaBean.delegaciaSelecionada == null}" />				
 
 
 				</p:toolbarGroup>
