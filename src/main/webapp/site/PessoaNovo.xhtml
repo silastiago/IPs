@@ -32,7 +32,7 @@
 					<p:password id="senha" value="#{pessoaBean.pessoa.senha}" />
 					
 					<p:outputLabel value="Grupo" for="grupo" />
-					<p:selectManyCheckbox id="grupo" value="#{pessoaBean.pessoa.grupos}" layout="responsive" columns="2">
+					<p:selectManyCheckbox id="grupo" value="#{pessoaBean.pessoa.grupos}" converter="grupoConverter" layout="responsive" columns="2">
         			<f:selectItems value="#{grupoBean.listar()}" var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.nome}"/>
     				</p:selectManyCheckbox>					
 					

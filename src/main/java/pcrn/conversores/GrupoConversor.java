@@ -9,13 +9,17 @@ import javax.faces.convert.FacesConverter;
 
 import pcrn.model.Grupo;
 import pcrn.repository.Grupos;
+import pcrn.util.cdi.CDIServiceLocator;
 
 
-@FacesConverter(forClass=Grupo.class)
+@FacesConverter("grupoConverter")
 public class GrupoConversor implements Converter{
 
 	private Grupos grupos;
 
+	public GrupoConversor() {
+		this.grupos = CDIServiceLocator.getBean(Grupos.class);
+	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Grupo retorno = null;			

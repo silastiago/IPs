@@ -29,11 +29,6 @@ public class DelegaciaBean implements Serializable{
 	private Delegacia delegaciaSelecionada;
 	private List<Delegacia> listaDelegacia = new ArrayList<Delegacia>();
 	
-
-	public DelegaciaBean() {
-		listaDelegacia = listar();
-	}
-	
 	public void cadastrar(){
 		//Esta linha salva a entidade grupo.
 		delegaciaService.salvar(delegacia);
