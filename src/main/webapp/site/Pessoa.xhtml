@@ -2,26 +2,24 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	template="../template/Layout.xhtml">
-	
+	xmlns:p="http://primefaces.org/ui" template="../template/Layout.xhtml">
+
 	<ui:define name="content">
 		<h1 class="aw-page-title">Pessoa</h1>
-		
+
 		<h:form id="frm">
-			
+
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
-					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{pessoaBean.novo()}"
-						process="@this" />
-						
+					<p:commandButton value="Novo" icon="ui-icon-plus"
+						action="#{pessoaBean.novo()}" process="@this" />
+
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandLink  value="Editar" 
-						title="Editar" action="#{pessoaBean.edicao()}"
-						process="@this"
+					<p:commandLink value="Editar" title="Editar"
+						action="#{pessoaBean.edicao()}" process="@this"
 						disabled="#{pessoaBean.pessoaSelecionada == null}">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</p:commandLink>
@@ -30,42 +28,46 @@
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
-						process="@this" update="tabela_pessoas toolbar"
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						title="Excluir" process="@this" update="tabela_pessoas toolbar"
 						action="#{pessoaBean.excluir}"
-						disabled="#{pessoaBean.pessoaSelecionada == null}" />	
-						
+						disabled="#{pessoaBean.pessoaSelecionada == null}" />
+
 				</p:toolbarGroup>
 			</p:toolbar>
-			
-			<p:dataTable id="tabela_pessoas" var="pessoa" value="#{pessoaBean.listar()}"
-			frame="box" rules="all" cellpadding="3"
-				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
-				columnClasses="nome" emptyMessage="Nenhuma pessoa Cadastrada"
-				selection="#{pessoaBean.pessoaSelecionada}"
-				selectionMode="single" rowKey="#{pessoa.codigo}">>
+
+			<p:dataTable id="tabela_pessoas" var="pessoa"
+				value="#{pessoaBean.listar()}" frame="box" rules="all"
+				cellpadding="3" width="100%" headerClass="cabecalho"
+				rowClasses="cor-sim, cor-nao" columnClasses="nome"
+				emptyMessage="Nenhuma pessoa Cadastrada"
+				selection="#{pessoaBean.pessoaSelecionada}" selectionMode="single"
+				rowKey="#{pessoa.codigo}">>
 				
 			<p:ajax event="rowSelect" update=":frm:toolbar" />
-			<p:ajax event="rowUnselect" update=":frm:toolbar" />	
-				
-			<p:column filterBy="#{pessoa.login}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
+				<p:ajax event="rowUnselect" update=":frm:toolbar" />
+
+				<p:column filterBy="#{pessoa.login}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
 					<f:facet name="header">
 						<h:outputText value="Login" />
 					</f:facet>
 					<h:outputText value="#{pessoa.login}" />
-			</p:column>
-			
-			<p:column filterBy="#{pessoa.grupo.nome}"  style="text-align: center; width:5%" 
-					filterMatchMode="startsWith">
+				</p:column>
+
+				<p:column style="text-align: center; width:5%">
 					<f:facet name="header">
-						<h:outputText value="Grupo" />
+						<h:outputText value="Grupos" />
 					</f:facet>
-					<h:outputText value="#{pessoa.grupo.nome}" />
-			</p:column>
-			
-			</p:dataTable>		
+					<ui:repeat var="grupo" value="#{pessoa.grupos}">
+						<h:outputText value="#{grupo.nome}" />
+						<h:outputText value="," />
+						<p:spacer width="2" />
+					</ui:repeat>
+				</p:column>
+
+			</p:dataTable>
 		</h:form>
 	</ui:define>
-	
+
 </ui:composition>
