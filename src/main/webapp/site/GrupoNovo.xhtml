@@ -13,7 +13,7 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" action="#{GrupoBean.cadastrar()}"
+					<p:commandButton value="Salvar" action="#{grupoBean.cadastrar()}"
 						process="@this capaPanel" />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -27,7 +27,7 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
 					<p:outputLabel value="Grupo" for="grupo" />
-					<p:inputText id="grupo" value="#{GrupoBean.grupo.nome}" />
+					<p:inputText id="grupo" value="#{grupoBean.grupo.nome}" />
 					
 					
 					

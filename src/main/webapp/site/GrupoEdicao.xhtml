@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui" template="../template/Layout.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="codigo" value="#{GrupoBean.grupo}" />
+		<f:viewParam name="codigo" value="#{grupoBean.grupo}" />
 	</f:metadata>
 
 	<ui:define name="content">
@@ -15,7 +15,7 @@
 
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Editar" action="#{GrupoBean.editar()}"
+					<p:commandButton value="Editar" action="#{grupoBean.editar()}"
 						process="@this capaPanel"  />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -29,7 +29,7 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 
 					<p:outputLabel value="Login" for="login" />
-					<p:inputText id="login" value="#{GrupoBean.grupo.nome}" />
+					<p:inputText id="login" value="#{grupoBean.grupo.nome}" />
 
 
 

@@ -6,7 +6,7 @@
 	template="../template/Layout.xhtml">
 
 <f:metadata>
-	<f:viewParam name="codigo" value="#{PessoaBean.pessoa}" />
+	<f:viewParam name="codigo" value="#{pessoaBean.pessoa}" />
 </f:metadata>
 	
 	<ui:define name="content">
@@ -16,7 +16,7 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Editar" action="#{PessoaBean.editar()}"
+					<p:commandButton value="Editar" action="#{pessoaBean.editar()}"
 						process="@this capaPanel" />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -29,15 +29,15 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
 					<p:outputLabel value="Login" for="login" />
-					<p:inputText id="login" value="#{PessoaBean.pessoa.login}" />
+					<p:inputText id="login" value="#{pessoaBean.pessoa.login}" />
 					
 					<p:outputLabel value="Senha" for="senha" />
-					<p:password id="senha" value="#{PessoaBean.pessoa.senha}" />
+					<p:password id="senha" value="#{pessoaBean.pessoa.senha}" />
 					
 					<p:outputLabel value="Grupo" for="grupo" />
-					<p:selectOneMenu id="grupo" value="#{PessoaBean.pessoa.grupo}"  label="Grupo">
+					<p:selectOneMenu id="grupo" value="#{pessoaBean.pessoa.grupo}"  label="Grupo">
 						<f:selectItem itemLabel="Selecione o grupo" noSelectionOption="true"/>
-						<f:selectItems value="#{GrupoBean.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
+						<f:selectItems value="#{grupoBean.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
 					</p:selectOneMenu>
 					
 				</p:panelGrid>

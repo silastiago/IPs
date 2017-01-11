@@ -12,7 +12,7 @@
 			
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
-					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{PessoaBean.novo()}"
+					<p:commandButton value="Novo" icon="ui-icon-plus"  action="#{pessoaBean.novo()}"
 						process="@this" />
 						
 					<span class="ui-separator"> <span
@@ -20,9 +20,9 @@
 					</span>
 
 					<p:commandLink  value="Editar" 
-						title="Editar" action="#{PessoaBean.edicao()}"
+						title="Editar" action="#{pessoaBean.edicao()}"
 						process="@this"
-						disabled="#{PessoaBean.pessoaSelecionada == null}">
+						disabled="#{pessoaBean.pessoaSelecionada == null}">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</p:commandLink>
 
@@ -32,17 +32,17 @@
 
 					<p:commandButton value="Excluir" icon="ui-icon-trash" title="Excluir" 
 						process="@this" update="tabela_pessoas toolbar"
-						action="#{PessoaBean.excluir}"
-						disabled="#{PessoaBean.pessoaSelecionada == null}" />	
+						action="#{pessoaBean.excluir}"
+						disabled="#{pessoaBean.pessoaSelecionada == null}" />	
 						
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="tabela_pessoas" var="pessoa" value="#{PessoaBean.listar()}"
+			<p:dataTable id="tabela_pessoas" var="pessoa" value="#{pessoaBean.listar()}"
 			frame="box" rules="all" cellpadding="3"
 				width="100%" headerClass="cabecalho" rowClasses="cor-sim, cor-nao"
 				columnClasses="nome" emptyMessage="Nenhuma pessoa Cadastrada"
-				selection="#{PessoaBean.pessoaSelecionada}"
+				selection="#{pessoaBean.pessoaSelecionada}"
 				selectionMode="single" rowKey="#{pessoa.codigo}">>
 				
 			<p:ajax event="rowSelect" update=":frm:toolbar" />

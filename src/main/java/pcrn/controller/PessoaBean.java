@@ -5,14 +5,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import pcrn.model.Pessoa;
@@ -20,7 +17,7 @@ import pcrn.service.PessoaService;
 import pcrn.util.FacesUtil;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class PessoaBean implements Serializable{
 
 	
@@ -35,11 +32,6 @@ public class PessoaBean implements Serializable{
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-	
-	private HttpServletRequest getRequest() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		return (HttpServletRequest) context.getExternalContext().getRequest();
-	}
 
 	public void cadastrar() {
 		

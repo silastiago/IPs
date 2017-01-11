@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui" template="../template/Layout.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="codigo" value="#{EquipamentoBean.equipamento}" />
+		<f:viewParam name="codigo" value="#{equipamentoBean.equipamento}" />
 	</f:metadata>
 
 	<ui:define name="content">
@@ -16,7 +16,7 @@
 			<p:toolbar>
 				<p:toolbarGroup>
 					<p:commandButton value="Editar"
-						action="#{EquipamentoBean.editar()}" process="@this capaPanel" />
+						action="#{equipamentoBean.editar()}" process="@this capaPanel" />
 						
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -30,26 +30,26 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 
 					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{EquipamentoBean.equipamento.nome}"
+					<p:inputText id="nome" value="#{equipamentoBean.equipamento.nome}"
 						placeholder="Aqui fica o nome do Equipamento" />
 
 					<p:outputLabel value="Tipo do equipamento" for="tipo" />
 					<p:selectOneMenu id="tipo"
-						value="#{EquipamentoBean.equipamento.descricao}" label="Tipo">
+						value="#{equipamentoBean.equipamento.descricao}" label="Tipo">
 						<f:selectItem itemLabel="Selecione o Tipo do Equipamento" noSelectionOption="true"  />
 						<f:selectItem itemLabel="Computador" itemValue="Computador" />
 						<f:selectItem itemLabel="Impressora" itemValue="Impressora" />	
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Ip" for="ip" />
-					<p:inputText id="ip" value="#{EquipamentoBean.equipamento.ip}"
+					<p:inputText id="ip" value="#{equipamentoBean.equipamento.ip}"
 						placeholder="Aqui fica o ip do Equipamento" />
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
-						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia" >
+						value="#{equipamentoBean.equipamento.delegacia}" label="Delegacia" >
 						<f:selectItem itemLabel="Selecione a Delegacia" noSelectionOption="true"/>
-						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
+						<f:selectItems value="#{delegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
 					

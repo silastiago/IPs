@@ -13,16 +13,16 @@
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{EquipamentoBean.novo()}" process="@this" />
+						action="#{equipamentoBean.novo()}" process="@this" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
 					<p:commandLink  value="Editar" 
-						title="Editar" action="#{EquipamentoBean.edicao()}"
+						title="Editar" action="#{equipamentoBean.edicao()}"
 						process="@this"
-						disabled="#{EquipamentoBean.equipamentoSelecionado == null}">
+						disabled="#{equipamentoBean.equipamentoSelecionado == null}">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</p:commandLink>
 
@@ -33,8 +33,8 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash"
 						title="Excluir" process="@this"
 						update="tabela_equipamentos toolbar"
-						action="#{EquipamentoBean.excluir}"
-						disabled="#{EquipamentoBean.equipamentoSelecionado == null}" />
+						action="#{equipamentoBean.excluir}"
+						disabled="#{equipamentoBean.equipamentoSelecionado == null}" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -46,24 +46,24 @@
 
 					<p:outputLabel value="Delegacia" for="delegacia" />
 					<p:selectOneMenu id="delegacia"
-						value="#{EquipamentoBean.equipamento.delegacia}" label="Delegacia">
+						value="#{equipamentoBean.equipamento.delegacia}" label="Delegacia">
 						<f:selectItem itemLabel="Selecione a Delegacia" />
-						<f:selectItems value="#{DelegaciaBean.listar()}" var="delegacia"
+						<f:selectItems value="#{delegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
 					</p:selectOneMenu>
 					
 					<p:commandButton value="Listar" icon="ui-icon-search"
-						action="#{EquipamentoBean.listarDelegacias()}" update="@form" />
+						action="#{equipamentoBean.listarDelegacias()}" update="@form" />
 					
 				</p:panelGrid>
 			</div>
 
 			<p:dataTable id="tabela_equipamentos" var="equipamento"
-				value="#{EquipamentoBean.listaEquipamento}" frame="box" rules="all"
+				value="#{equipamentoBean.listaEquipamento}" frame="box" rules="all"
 				cellpadding="3" width="100%" headerClass="cabecalho"
 				rowClasses="cor-sim, cor-nao" columnClasses="nome"
 				emptyMessage="Nenhum Equipamento Cadastrado na Delegacia"
-				selection="#{EquipamentoBean.equipamentoSelecionado}"
+				selection="#{equipamentoBean.equipamentoSelecionado}"
 				selectionMode="single" rowKey="#{equipamento.codigo}">
 
 				<p:ajax event="rowSelect" update=":frm:toolbar" />
