@@ -32,10 +32,9 @@
 					<p:password id="senha" value="#{pessoaBean.pessoa.senha}" />
 					
 					<p:outputLabel value="Grupo" for="grupo" />
-					<p:selectOneMenu id="grupo" value="#{pessoaBean.pessoa.grupo}"  label="Grupo">
-						<f:selectItem itemLabel="Selecione o grupo" noSelectionOption="true"/>
-						<f:selectItems value="#{grupoBean.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
-					</p:selectOneMenu>
+					<p:selectManyCheckbox id="grupo" value="#{pessoaBean.pessoa.grupos}" layout="responsive" columns="2">
+        			<f:selectItems value="#{grupoBean.listar()}" var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.nome}"/>
+    				</p:selectManyCheckbox>					
 					
 				</p:panelGrid>
 			</div>	
