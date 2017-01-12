@@ -48,7 +48,7 @@ public class EquipamentoBean implements Serializable{
 			FacesContext fc = FacesContext.getCurrentInstance();
 
 			try {
-				fc.getExternalContext().redirect("Equipamento.xhtml");
+				fc.getExternalContext().redirect("../Consulta/Equipamento.xhtml");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,7 +70,7 @@ public class EquipamentoBean implements Serializable{
 			FacesContext fc = FacesContext.getCurrentInstance();
 
 			try {
-				fc.getExternalContext().redirect("Equipamento.xhtml");
+				fc.getExternalContext().redirect("../Consulta/Equipamento.xhtml");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,7 +86,7 @@ public class EquipamentoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Equipamento.xhtml");
+			fc.getExternalContext().redirect("../Consulta/Equipamento.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,7 +116,7 @@ public class EquipamentoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("EquipamentoNovo.xhtml");
+			fc.getExternalContext().redirect("../Novo/EquipamentoNovo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,7 +127,7 @@ public class EquipamentoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("EquipamentoEdicao.xhtml?codigo="+equipamentoSelecionado.getCodigo());
+			fc.getExternalContext().redirect("../Edicao/EquipamentoEdicao.xhtml?codigo="+equipamentoSelecionado.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

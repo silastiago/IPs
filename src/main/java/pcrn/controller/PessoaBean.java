@@ -5,16 +5,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import pcrn.model.Pessoa;
 import pcrn.service.PessoaService;
@@ -24,24 +18,13 @@ import pcrn.util.FacesUtil;
 @ViewScoped
 public class PessoaBean implements Serializable{
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PessoaService pessoaService;
-	
-	@Inject
-	private FacesContext facesContext;
-	
-	@Inject
-	private HttpServletRequest request;
-	
-	@Inject
-	private HttpServletResponse response;
-	
+	private PessoaService pessoaService;	
 	
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
@@ -57,7 +40,7 @@ public class PessoaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Pessoa.xhtml");
+			fc.getExternalContext().redirect("../Consulta/Pessoa.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,7 +57,7 @@ public class PessoaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Pessoa.xhtml");
+			fc.getExternalContext().redirect("../Consulta/Pessoa.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,49 +72,6 @@ public class PessoaBean implements Serializable{
 		listar();
 	}
 
-	public void logar(){
-		
-		String pagina = "";
-		FacesContext fc = FacesContext.getCurrentInstance();
-
-		String senha = pessoa.getSenha();
-		System.out.println("Senha no metodo logar: " + senha);
-		pessoa.setSenha(FacesUtil.md5(senha));
-		System.out.println("Senha criptografada no metodo logar: " + pessoa.getSenha());
-
-		if (pessoaService.login(pessoa) == false) {
-			pagina = "login.xhtml?faces-redirect=true";
-			fc.addMessage("message", new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Login ou Senha errado"));
-		}else{
-			HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-			session.setAttribute("usuario", pessoa.getLogin());
-			session.setAttribute("senha", pessoa.getSenha());
-			pagina = "site/index.xhtml";
-			try {
-				fc.getExternalContext().redirect(pagina);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		//return pagina;
-	}
-
-	public void login() throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_check");
-		dispatcher.forward(request, response);
-		
-		facesContext.responseComplete();
-	}
-	
-	public void sair() throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_logout");
-		dispatcher.forward(request, response);
-		
-		facesContext.responseComplete();
-	}
-
-
 	public List<Pessoa> listar(){
 		//Esta linha lista os tipos e joga em uma lista de tipos.
 		listaPessoas = pessoaService.listar();
@@ -144,7 +84,7 @@ public class PessoaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("PessoaNovo.xhtml");
+			fc.getExternalContext().redirect("../Novo/PessoaNovo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,7 +95,7 @@ public class PessoaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("PessoaEdicao.xhtml?codigo="+pessoaSelecionada.getCodigo());
+			fc.getExternalContext().redirect("../Edicao/PessoaEdicao.xhtml?codigo="+pessoaSelecionada.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

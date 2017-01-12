@@ -105,7 +105,7 @@ public class GrupoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("/IPs/Edicao/GrupoEdicao.xhtml?codigo="+grupoSelecionado.getCodigo());
+			fc.getExternalContext().redirect("../Edicao/GrupoEdicao.xhtml?codigo="+grupoSelecionado.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

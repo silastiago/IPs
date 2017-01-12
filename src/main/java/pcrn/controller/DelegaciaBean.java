@@ -36,7 +36,7 @@ public class DelegaciaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 		
 		try {
-			fc.getExternalContext().redirect("Delegacia.xhtml");
+			fc.getExternalContext().redirect("/Consulta/Delegacia.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class DelegaciaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("DelegaciaNovo.xhtml");
+			fc.getExternalContext().redirect("../Novo/DelegaciaNovo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class DelegaciaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("DelegaciaEdicao.xhtml?codigo="+delegaciaSelecionada.getCodigo());
+			fc.getExternalContext().redirect("../Edicao/DelegaciaEdicao.xhtml?codigo="+delegaciaSelecionada.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

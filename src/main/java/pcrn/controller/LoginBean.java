@@ -38,6 +38,13 @@ public class LoginBean implements Serializable {
 		facesContext.responseComplete();
 	}
 
+	public void sair() throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_logout");
+		dispatcher.forward(request, response);
+		
+		facesContext.responseComplete();
+	}
+	
 	public void preRender(){
 		if ("true".equals(request.getParameter("invalid"))) {
 			FacesUtil.addErrorMessage("Usuario ou senha Invalido!!");
