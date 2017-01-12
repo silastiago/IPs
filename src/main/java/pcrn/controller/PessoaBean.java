@@ -6,11 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pcrn.model.Grupo;
 import pcrn.model.Pessoa;
+import pcrn.repository.Grupos;
 import pcrn.service.PessoaService;
 import pcrn.util.FacesUtil;
 
@@ -29,6 +32,17 @@ public class PessoaBean implements Serializable{
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
+	private List<Grupo> listaGrupos;
+	
+	@Inject
+	private Grupos grupos;
+	
+	@PostConstruct
+	public void inicializar(){
+		listaGrupos = grupos.listar();
+	}
+	
+	
 
 	public void cadastrar() {
 		
@@ -102,6 +116,18 @@ public class PessoaBean implements Serializable{
 		}
 	}
 	
+	public List<Grupo> getListaGrupos() {
+		return listaGrupos;
+	}
+
+
+
+	public void setListaGrupos(List<Grupo> listaGrupos) {
+		this.listaGrupos = listaGrupos;
+	}
+
+
+
 	public Pessoa getPessoaSelecionada() {
 		return pessoaSelecionada;
 	}
