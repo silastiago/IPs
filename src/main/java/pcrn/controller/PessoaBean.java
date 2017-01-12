@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pcrn.model.Pessoa;
@@ -28,6 +32,16 @@ public class PessoaBean implements Serializable{
 
 	@Inject
 	private PessoaService pessoaService;
+	
+	@Inject
+	private FacesContext facesContext;
+	
+	@Inject
+	private HttpServletRequest request;
+	
+	@Inject
+	private HttpServletResponse response;
+	
 	
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
@@ -103,6 +117,13 @@ public class PessoaBean implements Serializable{
 		//return pagina;
 	}
 
+	public void login() throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_check");
+		dispatcher.forward(request, response);
+		
+		facesContext.responseComplete();
+	}
+	
 	public void sair() {
 		pessoaService.logout();
 

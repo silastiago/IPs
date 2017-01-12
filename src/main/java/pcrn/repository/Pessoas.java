@@ -32,6 +32,16 @@ public class Pessoas implements Serializable, IPessoa{
 		return true;
 	}
 
+	public Pessoa porLogin(String login) {
+		Query query = manager.createQuery("from Pessoa where login = :login ");
+		query.setParameter("login", login);
+		
+		Pessoa pessoa = null; 
+		pessoa = (Pessoa) query.getSingleResult();
+		return pessoa;
+	}
+	
+	
 	public void logout() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);

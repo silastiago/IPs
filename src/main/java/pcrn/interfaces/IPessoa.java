@@ -43,6 +43,10 @@ public interface IPessoa {
 	*/
 	public Pessoa porCodigo(Integer codigo);
 	
+	
+	
+	public Pessoa porLogin(String login);
+	
 	/** Este metodo cria ou altera uma pessoa.
 	*  	
 	*  @param pessoa, Esta pessoa � o objeto Pessoa que voc� ir� criar ou modificar.
