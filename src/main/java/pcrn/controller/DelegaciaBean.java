@@ -50,7 +50,7 @@ public class DelegaciaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 		
 		try {
-			fc.getExternalContext().redirect("Delegacia.xhtml");
+			fc.getExternalContext().redirect("/Consulta/Delegacia.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

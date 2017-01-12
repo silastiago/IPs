@@ -45,7 +45,7 @@ public class GrupoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Grupo.xhtml");
+			fc.getExternalContext().redirect("/Consulta/Grupo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class GrupoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("Grupo.xhtml");
+			fc.getExternalContext().redirect("/Consulta/Grupo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +94,7 @@ public class GrupoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("GrupoNovo.xhtml");
+			fc.getExternalContext().redirect("/Novo/GrupoNovo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class GrupoBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("GrupoEdicao.xhtml?codigo="+grupoSelecionado.getCodigo());
+			fc.getExternalContext().redirect("/IPs/Edicao/GrupoEdicao.xhtml?codigo="+grupoSelecionado.getCodigo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

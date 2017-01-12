@@ -124,18 +124,11 @@ public class PessoaBean implements Serializable{
 		facesContext.responseComplete();
 	}
 	
-	public void sair() {
-		pessoaService.logout();
-
-		try {
-
-			FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml?faces-redirect=true");
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	public void sair() throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_logout");
+		dispatcher.forward(request, response);
+		
+		facesContext.responseComplete();
 	}
 
 
