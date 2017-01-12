@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,11 @@ public class FacesUtil {
 	       //System.out.println("MD5: "+hash);
 	       System.out.println("Senha criptografada no metodo util: " + hash);
 		return hash;
+	}
+	
+	public static void addErrorMessage(String message) {
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
 	}
 	
 	

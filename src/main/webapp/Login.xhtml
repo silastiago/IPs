@@ -13,13 +13,19 @@
 		<h:outputStylesheet library="css" name="sistema.css"/>
 	</h:head>
 	<h:body>
+	<f:metadata>
+		<f:viewParam name="dummy"/>
+		<f:event listener="#{loginBean.preRender}" type="preRenderView"></f:event>
+	</f:metadata>
+	
+	
 		<div id="content">
 			<div style="width: 240px; margin-left: auto; margin-right: auto; margin-top: 150px">
 				<h1>#{msg.login}</h1>
 		
 				<h:form id="frm" prependId="false">
 		
-					<p:messages for ="message" showDetail="true" autoUpdate="true" closable="true" />
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 		
 					<p:panelGrid columns="2" styleClass="form-grid" style="padding: 10px"
 							columnClasses="label, campo" id="panel">
