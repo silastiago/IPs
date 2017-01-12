@@ -67,7 +67,7 @@ public class Pessoas implements Serializable, IPessoa{
 	}
 
 	public void remover(Pessoa pessoa) {
-		manager.remove(pessoa);
+		manager.remove(manager.getReference(Pessoa.class, pessoa.getCodigo()));
 	}
 
 }

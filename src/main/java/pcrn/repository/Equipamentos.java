@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import pcrn.interfaces.IEquipamento;
 import pcrn.model.Equipamento;
+import pcrn.model.Pessoa;
 
 public class Equipamentos implements Serializable, IEquipamento{
 
@@ -39,7 +40,8 @@ public class Equipamentos implements Serializable, IEquipamento{
 	}
 
 	public void remover(Equipamento equipamento) {
-		manager.remove(equipamento);
+		//manager.remove(equipamento);
+		manager.remove(manager.getReference(Equipamento.class, equipamento.getCodigo()));
 	}
 
 	@SuppressWarnings("unchecked")

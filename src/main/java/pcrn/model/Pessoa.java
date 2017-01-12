@@ -61,7 +61,7 @@ public class Pessoa implements Serializable, Cloneable{
 	}	
 	
 	@NotNull(message = "Grupo deve ser informado")
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_pessoa"),
 			inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	public List<Grupo> getGrupos() {

@@ -1,11 +1,14 @@
 package pcrn.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,6 +19,7 @@ public class Delegacia implements Serializable{
 
 	private Integer codigo;
 	private String nome;
+	private List<Equipamento> listaEquipamento;
 	
 	@Id
 	@GeneratedValue
@@ -35,6 +39,13 @@ public class Delegacia implements Serializable{
 		this.nome = nome;
 	}
 	
+	@OneToMany(mappedBy="delegacia", cascade=CascadeType.REMOVE)
+	public List<Equipamento> getListaEquipamento() {
+		return listaEquipamento;
+	}
+	public void setListaEquipamento(List<Equipamento> listaEquipamento) {
+		this.listaEquipamento = listaEquipamento;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

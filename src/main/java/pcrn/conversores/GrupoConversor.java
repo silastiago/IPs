@@ -10,7 +10,7 @@ import pcrn.repository.Grupos;
 import pcrn.util.cdi.CDIServiceLocator;
 
 
-@FacesConverter(forClass = Grupo.class)
+@FacesConverter(forClass=Grupo.class, value="grupoConverter")
 public class GrupoConversor implements Converter{
 
 	private Grupos grupos;

@@ -32,7 +32,7 @@
 						title="Excluir" process="@this" update="tabela_pessoas toolbar"
 						action="#{pessoaBean.excluir}"
 						disabled="#{pessoaBean.pessoaSelecionada == null}"
-						onclick="if (!confirm('Deseja deletar esta Pessoa ? ')) return false" />
+						onclick="if (!confirm('Deseja deletar  #{pessoaBean.pessoaSelecionada.login} ? ')) return false" />
 
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -46,7 +46,7 @@
 				rowKey="#{pessoa.codigo}">>
 				
 			<p:ajax event="rowSelect" update=":frm:toolbar" />
-				<p:ajax event="rowUnselect" update=":frm:toolbar" />
+			<p:ajax event="rowUnselect" update=":frm:toolbar" />
 
 				<p:column filterBy="#{pessoa.login}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">

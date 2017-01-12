@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 
 import pcrn.interfaces.IDelegacia;
 import pcrn.model.Delegacia;
+import pcrn.model.Pessoa;
 
 public class Delegacias implements Serializable, IDelegacia{
 
@@ -37,7 +38,8 @@ public class Delegacias implements Serializable, IDelegacia{
 	}
 
 	public void remover(Delegacia delegacia) {
-		manager.remove(delegacia);		
+		//manager.remove(delegacia);
+		manager.remove(manager.getReference(Delegacia.class, delegacia.getCodigo()));
 	}
 
 }

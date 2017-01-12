@@ -80,7 +80,6 @@ public class PessoaBean implements Serializable{
 
 
 	public void excluir(){
-		
 		pessoaService.remover(pessoaSelecionada);
 		pessoaSelecionada = null;
 		listar();

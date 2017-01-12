@@ -31,7 +31,7 @@
 						title="Excluir" process="@this" update="tabela_delegacias toolbar"
 						action="#{delegaciaBean.excluir}"
 						disabled="#{delegaciaBean.delegaciaSelecionada == null}"
-						onclick="if (!confirm('Deseja deletar esta Delegacia ? ')) return false" />
+						onclick="if (!confirm('Deseja deletar Delegacia  #{delegaciaBean.delegaciaSelecionada.nome} ? ')) return false" />
 
 
 				</p:toolbarGroup>

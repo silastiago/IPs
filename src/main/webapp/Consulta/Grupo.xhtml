@@ -32,7 +32,7 @@
 						title="Excluir" process="@this" update="tabela_grupos toolbar"
 						action="#{grupoBean.excluir}"
 						disabled="#{grupoBean.grupoSelecionado == null}"
-						onclick="if (!confirm('Deseja deletar este Grupo ? ')) return false" />
+						onclick="if (!confirm('Deseja deletar o Grupo #{grupoBean.grupoSelecionado.nome} ? ')) return false" />
 
 				</p:toolbarGroup>
 			</p:toolbar>
