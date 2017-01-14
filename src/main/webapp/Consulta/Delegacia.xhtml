@@ -13,7 +13,8 @@
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{delegaciaBean.novo()}" process="@this" />
+						action="#{delegaciaBean.novo()}" process="@this"
+						disabled="#{not seguranca.acessoCadastroPermitido}"/>
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -21,7 +22,7 @@
 
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
 						title="Editar" process="@this" action="#{delegaciaBean.edicao()}"
-						disabled="#{delegaciaBean.delegaciaSelecionada == null}" />
+						disabled="#{delegaciaBean.delegaciaSelecionada == null or not seguranca.acessoEdicaoPermitido}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -30,7 +31,7 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash"
 						title="Excluir" process="@this" update="tabela_delegacias toolbar"
 						action="#{delegaciaBean.excluir}"
-						disabled="#{delegaciaBean.delegaciaSelecionada == null}"
+						disabled="#{delegaciaBean.delegaciaSelecionada == null or not seguranca.acessoRemocaoPermitido}"
 						onclick="if (!confirm('Deseja deletar Delegacia  #{delegaciaBean.delegaciaSelecionada.nome} ? ')) return false" />
 
 

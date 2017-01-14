@@ -37,6 +37,6 @@ public class Grupos implements Serializable, IGrupo{
 	}
 
 	public void remover(Grupo grupo) {
-		manager.remove(grupo);
+		manager.remove(manager.getReference(Grupo.class, grupo.getCodigo()));
 	}
 }

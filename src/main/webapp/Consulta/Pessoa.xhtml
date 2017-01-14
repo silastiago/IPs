@@ -14,7 +14,8 @@
 				<p:toolbarGroup>
 
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{pessoaBean.novo()}" process="@this" />
+						action="#{pessoaBean.novo()}" process="@this"
+						disabled="#{not seguranca.acessoCadastroPermitido}"/>
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -22,7 +23,7 @@
 
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
 						title="Editar" process="@this" action="#{pessoaBean.edicao()}"
-						disabled="#{pessoaBean.pessoaSelecionada == null}" />
+						disabled="#{pessoaBean.pessoaSelecionada == null or not seguranca.acessoEdicaoPermitido}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -31,7 +32,7 @@
 					<p:commandButton value="Excluir" icon="ui-icon-trash"
 						title="Excluir" process="@this" update="tabela_pessoas toolbar"
 						action="#{pessoaBean.excluir}"
-						disabled="#{pessoaBean.pessoaSelecionada == null}"
+						disabled="#{pessoaBean.pessoaSelecionada == null or not seguranca.acessoRemocaoPermitido}"
 						onclick="if (!confirm('Deseja deletar  #{pessoaBean.pessoaSelecionada.login} ? ')) return false" />
 
 				</p:toolbarGroup>

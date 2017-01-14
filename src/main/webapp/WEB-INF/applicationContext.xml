@@ -34,8 +34,8 @@
 		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 	
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/Consulta/**"
-			access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
+		<intercept-url pattern="/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
 		<intercept-url pattern="/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
 		<intercept-url pattern="/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
 		<intercept-url pattern="/**" access="denyAll" />

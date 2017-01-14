@@ -14,7 +14,8 @@
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{equipamentoBean.novo()}" process="@this" />
+						action="#{equipamentoBean.novo()}" process="@this"
+						disabled="#{not seguranca.acessoCadastroPermitido}"/>					
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -23,7 +24,7 @@
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
 						title="Excluir" process="@this"
 						action="#{equipamentoBean.edicao()}"
-						disabled="#{equipamentoBean.equipamentoSelecionado == null}" />
+						disabled="#{equipamentoBean.equipamentoSelecionado == null or not seguranca.acessoEdicaoPermitido}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -33,7 +34,7 @@
 						title="Excluir" process="@this"
 						update="tabela_equipamentos toolbar"
 						action="#{equipamentoBean.excluir}"
-						disabled="#{equipamentoBean.equipamentoSelecionado == null}"
+						disabled="#{equipamentoBean.equipamentoSelecionado == null or not seguranca.acessoRemocaoPermitido}"
 						onclick="if (!confirm('Deseja deletar o Equipamento  ? ')) return false" />
 
 				</p:toolbarGroup>
