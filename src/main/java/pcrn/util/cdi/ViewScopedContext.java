@@ -37,6 +37,7 @@ public class ViewScopedContext implements Context, SystemEventListener {
 		return instance;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T get(final Contextual<T> component, final CreationalContext<T> creationalContext) {
 		assertActive();

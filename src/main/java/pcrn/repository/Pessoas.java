@@ -59,7 +59,8 @@ public class Pessoas implements Serializable, IPessoa{
 	}
 
 	public Pessoa porCodigo(Integer codigo) {
-		return manager.find(Pessoa.class, codigo);
+		Pessoa pessoa = manager.find(Pessoa.class, codigo);
+		return pessoa; 
 	}
 
 	public void salvar(Pessoa pessoa) {

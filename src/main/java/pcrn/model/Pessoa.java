@@ -3,15 +3,14 @@ package pcrn.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +25,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
-public class Pessoa implements Serializable, Cloneable{
+public class Pessoa implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private Integer codigo;
 	private String login;
@@ -61,7 +65,7 @@ public class Pessoa implements Serializable, Cloneable{
 	}	
 	
 	@NotNull(message = "Grupo deve ser informado")
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_pessoa"),
 			inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	public List<Grupo> getGrupos() {
@@ -105,11 +109,6 @@ public class Pessoa implements Serializable, Cloneable{
 		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
-	}
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		
-		return super.clone();
 	}
 
 }

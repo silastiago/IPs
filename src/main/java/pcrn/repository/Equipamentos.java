@@ -10,7 +10,6 @@ import javax.persistence.Query;
 
 import pcrn.interfaces.IEquipamento;
 import pcrn.model.Equipamento;
-import pcrn.model.Pessoa;
 
 public class Equipamentos implements Serializable, IEquipamento{
 

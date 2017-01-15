@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 
 import pcrn.interfaces.IDelegacia;
 import pcrn.model.Delegacia;
-import pcrn.model.Pessoa;
 
 public class Delegacias implements Serializable, IDelegacia{
 

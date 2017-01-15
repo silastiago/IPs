@@ -29,7 +29,8 @@ public class Grupos implements Serializable, IGrupo{
 	}
 
 	public Grupo porCodigo(Integer codigo) {
-		return manager.find(Grupo.class, codigo);
+		Grupo grupo = manager.find(Grupo.class, codigo);
+		return grupo;
 	}
 
 	public void salvar(Grupo grupo) {

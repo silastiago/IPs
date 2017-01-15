@@ -44,6 +44,7 @@ public class PessoaService implements Serializable{
 		pessoas.salvar(pessoa);
 	}
 	
+	
 	@Transactional
 	public void remover(Pessoa pessoa) {
 		pessoas.remover(pessoa);

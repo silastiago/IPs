@@ -37,6 +37,7 @@ public class PessoaBean implements Serializable{
 	@Inject
 	private Grupos grupos;
 	
+	
 	@PostConstruct
 	public void inicializar(){
 		listaGrupos = grupos.listar();
