@@ -28,15 +28,6 @@
 		<welcome-file>Home.xhtml</welcome-file>
 	</welcome-file-list>
 
-	<filter>
-		<filter-name>Delegacia_Filtro</filter-name>
-		<filter-class>pcrn.filtro.FiltroSeguranca</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>Delegacia_Filtro</filter-name>
-		<url-pattern>/site/*</url-pattern>
-	</filter-mapping>
-
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>bootstrap</param-value>
