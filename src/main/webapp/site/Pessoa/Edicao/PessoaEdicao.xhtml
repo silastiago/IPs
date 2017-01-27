@@ -31,9 +31,6 @@
 					<p:outputLabel value="Login" for="login" />
 					<p:inputText id="login" value="#{pessoaBean.pessoa.login}" />
 					
-					<p:outputLabel value="Senha" for="senha" />
-					<p:password id="senha" value="#{pessoaBean.pessoa.senha}" />
-					
 					<p:outputLabel value="Grupo" for="grupo" />
 					<p:selectManyCheckbox id="grupo" value="#{pessoaBean.pessoa.grupos}" converter="grupoConverter" layout="responsive" columns="2">
 					<f:attribute name="collectionType" value="java.util.ArrayList"/>

@@ -7,13 +7,17 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.annotation.PostConstruct;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import pcrn.model.Grupo;
 import pcrn.model.Pessoa;
 import pcrn.repository.Grupos;
+import pcrn.security.UsuarioSistema;
 import pcrn.service.PessoaService;
 import pcrn.util.FacesUtil;
 
@@ -27,31 +31,34 @@ public class PessoaBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	private ExternalContext externalContext;
+
+	@Inject
 	private PessoaService pessoaService;	
-	
+
 	private Pessoa pessoa = new Pessoa();
 	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 	private List<Grupo> listaGrupos;
-	
+
 	@Inject
 	private Grupos grupos;
-	
-	
+
+
 	@PostConstruct
 	public void inicializar(){
 		listaGrupos = grupos.listar();
 	}
-	
-	
+
+
 
 	public void cadastrar() {
-		
+
 		String senha = this.pessoa.getSenha();
-		
+
 		this.pessoa.setSenha(FacesUtil.md5(senha));
 		pessoaService.salvar(pessoa);
-		
+
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
@@ -60,12 +67,27 @@ public class PessoaBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void editar() {
-		
+
+		pessoaService.salvar(pessoa);
+
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("../Consulta/Pessoa.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void alterarSenha() {
+
 		String senha = this.pessoa.getSenha();
+		pessoa = this.getUsuarioLogado().getPessoa();
 		this.pessoa.setSenha(FacesUtil.md5(senha));
 		pessoaService.salvar(pessoa);
 
@@ -79,6 +101,19 @@ public class PessoaBean implements Serializable{
 		}
 	}
 
+	private UsuarioSistema getUsuarioLogado() {
+		UsuarioSistema usuario = null;
+		
+		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) 
+				FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+		
+		if (auth != null && auth.getPrincipal() != null) {
+			usuario = (UsuarioSistema) auth.getPrincipal();
+		}
+		
+		return usuario;
+	}
+	
 
 	public void excluir(){
 		pessoaService.remover(pessoaSelecionada);
@@ -92,7 +127,7 @@ public class PessoaBean implements Serializable{
 		//retorna a lista de tipos.
 		return listaPessoas;
 	}
-	
+
 
 	public void novo(){
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -115,7 +150,7 @@ public class PessoaBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;
 	}
