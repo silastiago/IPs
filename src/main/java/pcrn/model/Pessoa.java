@@ -66,7 +66,7 @@ public class Pessoa implements Serializable{
 	
 	@NotNull(message = "Grupo deve ser informado")
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_pessoa"),
+	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_usuario"),
 			inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	public List<Grupo> getGrupos() {
 		return grupos;
