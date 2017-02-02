@@ -37,16 +37,16 @@
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		
 		<intercept-url pattern="/site/Delegacia/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Delegacia/Edicao/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Delegacia/Novo/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Delegacia/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Delegacia/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
 		
 		<intercept-url pattern="/site/Equipamento/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Equipamento/Edicao/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Equipamento/Novo/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Equipamento/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Equipamento/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
 		
 		<intercept-url pattern="/site/Pessoa/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Pessoa/Edicao/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Pessoa/Novo/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Pessoa/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Pessoa/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
 		<intercept-url pattern="/site/Pessoa/MudarSenha/**" access="isAuthenticated()" />
 		
 		<intercept-url pattern="/site/Grupo/Consulta/**" access="denyAll" />
