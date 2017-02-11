@@ -84,7 +84,7 @@ public class PessoaBean implements Serializable{
 		}
 	}
 
-	public void alterarSenha() {
+	public void alterarPropriaSenha() {
 
 		String senha = this.pessoa.getSenha();
 		pessoa = this.getUsuarioLogado().getPessoa();
@@ -101,6 +101,34 @@ public class PessoaBean implements Serializable{
 		}
 	}
 
+	public void alterarSenha() {
+
+		String senha = this.pessoa.getSenha();
+		this.pessoa.setSenha(FacesUtil.md5(senha));
+		pessoaService.salvar(pessoa);
+
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("../Consulta/Pessoa.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void alteracaoSenha(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("../Edicao/PessoaSenha.xhtml?codigo="+pessoaSelecionada.getCodigo());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
 		
