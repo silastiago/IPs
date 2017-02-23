@@ -24,7 +24,7 @@ public class Equipamentos implements Serializable, IEquipamento{
 	@SuppressWarnings("unchecked")
 	public List<Equipamento> listar(int codigo_delegacia) {
 		List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
-		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo ");
+		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo order by quarto_octal asc");
 		query.setParameter("codigo", codigo_delegacia);
 		listaEquipamento = query.getResultList();
 		return listaEquipamento;

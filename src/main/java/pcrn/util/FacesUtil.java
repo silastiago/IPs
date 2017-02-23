@@ -48,5 +48,11 @@ public class FacesUtil {
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
 	}
 	
+	public static int pegarQuartoOctal(String ip){
+		String[] ipTemp = ip.split("\\.");
+		String quartoOctal = ipTemp[3];
+		return Integer.parseInt(quartoOctal);
+	}
+	
 	
 }

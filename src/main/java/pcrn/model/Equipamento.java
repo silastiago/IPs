@@ -27,6 +27,7 @@ public class Equipamento implements Serializable{
 	private String nome;
 	private String descricao;
 	private String ip;
+	private int quartoOctal;
 	private Delegacia delegacia;
 	
 	@Id
@@ -65,6 +66,14 @@ public class Equipamento implements Serializable{
 		this.ip = ip;
 	}
 	
+	@Column(name="quarto_octal")
+	public int getQuartoOctal() {
+		return quartoOctal;
+	}
+	public void setQuartoOctal(int quartoOctal) {
+		this.quartoOctal = quartoOctal;
+	}
+	
 	@NotNull(message = "Delegacia deve ser informada")
 	@ManyToOne
 	@JoinColumn(name="codigo_delegacia", referencedColumnName="codigo")
@@ -74,15 +83,16 @@ public class Equipamento implements Serializable{
 	public void setDelegacia(Delegacia delegacia) {
 		this.delegacia = delegacia;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((delegacia == null) ? 0 : delegacia.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((ip == null) ? 0 : ip.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + quartoOctal;
 		return result;
 	}
 	@Override
@@ -104,6 +114,11 @@ public class Equipamento implements Serializable{
 				return false;
 		} else if (!delegacia.equals(other.delegacia))
 			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (ip == null) {
 			if (other.ip != null)
 				return false;
@@ -114,6 +129,8 @@ public class Equipamento implements Serializable{
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (quartoOctal != other.quartoOctal)
+			return false;
 		return true;
-	}	
+	}
 }

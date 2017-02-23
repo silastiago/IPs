@@ -13,6 +13,7 @@ import javax.inject.Named;
 
 import pcrn.model.Equipamento;
 import pcrn.service.EquipamentoService;
+import pcrn.util.FacesUtil;
 
 @Named
 @ViewScoped
@@ -43,7 +44,9 @@ public class EquipamentoBean implements Serializable{
 		}else{
 
 			//Esta linha salva a entidade grupo.
+			equipamento.setQuartoOctal(FacesUtil.pegarQuartoOctal(equipamento.getIp()));
 			equipamentoService.salvar(equipamento);
+			
 
 			FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -65,6 +68,7 @@ public class EquipamentoBean implements Serializable{
 		}else{
 
 			//Esta linha salva a entidade grupo.
+			equipamento.setQuartoOctal(FacesUtil.pegarQuartoOctal(equipamento.getIp()));
 			equipamentoService.salvar(equipamento);
 
 			FacesContext fc = FacesContext.getCurrentInstance();
