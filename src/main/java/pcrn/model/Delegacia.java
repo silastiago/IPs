@@ -36,7 +36,7 @@ public class Delegacia implements Serializable{
 	}
 	
 	@NotEmpty(message = "Nome da delegacia deve ser informada")
-	@Column
+	@Column(name="nome_delegacia")
 	public String getNome() {
 		return nome;
 	}

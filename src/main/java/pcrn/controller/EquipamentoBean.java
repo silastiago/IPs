@@ -3,17 +3,24 @@ package pcrn.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
 
 import pcrn.model.Equipamento;
 import pcrn.service.EquipamentoService;
 import pcrn.util.FacesUtil;
+import pcrn.util.report.ExecutorRelatorio;
 
 @Named
 @ViewScoped
@@ -27,6 +34,15 @@ public class EquipamentoBean implements Serializable{
 	@Inject
 	private EquipamentoService equipamentoService;
 	
+	@Inject
+	private HttpServletResponse response;
+	
+	@Inject
+	private EntityManager manager;
+	
+	@Inject
+	private FacesContext facesContext;
+	
 	private Equipamento equipamento = new Equipamento();
 	private Equipamento equipamentoSelecionado;
 	private List<Equipamento> listaEquipamento;
@@ -34,6 +50,25 @@ public class EquipamentoBean implements Serializable{
 	public EquipamentoBean() {
 		listaEquipamento  = new ArrayList<Equipamento>();
 	}
+	
+	
+	public void emitir() {
+		Map<String, Object> parametros = new HashMap<>();
+		parametros.put("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		
+		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/ips.jasper",
+				this.response, parametros, "Relatorio_de_Ip.pdf");
+		
+		Session session = manager.unwrap(Session.class);
+		session.doWork(executor);
+		
+		if (executor.isRelatorioGerado()) {
+			facesContext.responseComplete();
+		} else {
+			FacesUtil.addErrorMessage("A execução do relatório não retornou dados.");
+		}
+	}
+	
 
 	public void cadastrar(){
 		List<Equipamento> listaEquipamentos = equipamentoService.validacaoIPCadastro(equipamento);

@@ -40,7 +40,7 @@ public class Equipamento implements Serializable{
 	}
 	
 	@NotEmpty(message = "Nome da maquina deve ser informado")
-	@Column()
+	@Column(name="nome_equipamento")
 	public String getNome() {
 		return nome;
 	}

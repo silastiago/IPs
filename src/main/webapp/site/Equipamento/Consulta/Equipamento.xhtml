@@ -36,6 +36,7 @@
 						action="#{equipamentoBean.excluir}"
 						disabled="#{equipamentoBean.equipamentoSelecionado == null or not seguranca.acessoRemocaoPermitido}"
 						onclick="if (!confirm('Deseja deletar o Equipamento  ? ')) return false" />
+					
 
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -52,11 +53,16 @@
 						<f:selectItem itemLabel="Selecione a Delegacia" />
 						<f:selectItems value="#{delegaciaBean.listar()}" var="delegacia"
 							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
-					</p:selectOneMenu>
-
+					</p:selectOneMenu>	
+					
+					<h:panelGroup>
 					<p:commandButton value="Listar" icon="ui-icon-search"
 						action="#{equipamentoBean.listarDelegacias()}" update="@form" />
-
+	    			
+	    			<p:commandButton value="Emitir Relatorio" action="#{equipamentoBean.emitir}" onclick="this.form.target='_blank'"
+	    				ajax="false" />	
+					</h:panelGroup>
+					
 				</p:panelGrid>
 			</div>
 
