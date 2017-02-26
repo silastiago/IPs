@@ -44,11 +44,19 @@ public class EquipamentoBean implements Serializable{
 	private FacesContext facesContext;
 	
 	private Equipamento equipamento = new Equipamento();
+	private Equipamento ipLivre;
 	private Equipamento equipamentoSelecionado;
 	private List<Equipamento> listaEquipamento;
+	private List<Equipamento> listaIpsLivres;
+	private List<Integer> listaIPsLIvres;
+	private int renderizarTabela = 0;
+	private boolean renderizarLista = false;
+	
 
 	public EquipamentoBean() {
 		listaEquipamento  = new ArrayList<Equipamento>();
+		listaIpsLivres = new ArrayList<Equipamento>();
+		ipLivre = new Equipamento();
 	}
 	
 	
@@ -67,6 +75,24 @@ public class EquipamentoBean implements Serializable{
 		} else {
 			FacesUtil.addErrorMessage("A execução do relatório não retornou dados.");
 		}
+	}
+	
+	public List<Equipamento> listarIPsLivres(){
+		renderizarTabela = 2;
+		renderizarLista = false;
+		
+		for (int i = 1; i < 256; i++) {
+			if (equipamentoService.listarIPsLIvres(i, equipamento.getDelegacia().getCodigo()).size() == 1) {
+				
+			}else{
+				System.out.println("Ips Livres: " + i);
+				ipLivre = new Equipamento();
+				ipLivre.setQuartoOctal(i);
+				listaIpsLivres.add(ipLivre);
+			}
+		}		
+		
+		return listaIpsLivres;
 	}
 	
 
@@ -134,6 +160,9 @@ public class EquipamentoBean implements Serializable{
 	}
 
 	public List<Equipamento> listarDelegacias(){
+		renderizarTabela = 2;
+		renderizarLista = true;
+		System.out.println(renderizarTabela);
 		listaEquipamento = equipamentoService.listar(equipamento.getDelegacia().getCodigo());
 		return listaEquipamento;
 	}
@@ -172,6 +201,58 @@ public class EquipamentoBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	public Equipamento getIpLivre() {
+		return ipLivre;
+	}
+
+
+	public void setIpLivre(Equipamento ipLivre) {
+		this.ipLivre = ipLivre;
+	}
+
+
+	public List<Equipamento> getListaIpsLivres() {
+		return listaIpsLivres;
+	}
+
+
+	public void setListaIpsLivres(List<Equipamento> listaIpsLivres) {
+		this.listaIpsLivres = listaIpsLivres;
+	}
+
+
+	public int getRenderizarTabela() {
+		return renderizarTabela;
+	}
+
+
+	public void setRenderizarTabela(int renderizarTabela) {
+		this.renderizarTabela = renderizarTabela;
+	}
+
+
+	public boolean isRenderizarLista() {
+		return renderizarLista;
+	}
+
+
+	public void setRendericarLista(boolean renderizarLista) {
+		this.renderizarLista = renderizarLista;
+	}
+
+
+	public List<Integer> getListaIPsLIvres() {
+		return listaIPsLIvres;
+	}
+
+
+	public void setListaIPsLIvres(List<Integer> listaIPsLIvres) {
+		this.listaIPsLIvres = listaIPsLIvres;
+	}
+
 
 	public Equipamento getEquipamentoSelecionado() {
 		return equipamentoSelecionado;

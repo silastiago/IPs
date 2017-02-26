@@ -62,4 +62,14 @@ public class Equipamentos implements Serializable, IEquipamento{
 		return listaEquipamento;
 	}
 
+	@Override
+	public List<Equipamento> listarIpsLivre(int quarto_octal, int codigo_delegacia) {
+		
+		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and quarto_octal = :quarto_octal");
+		query.setParameter("codigo_delegacia", codigo_delegacia);
+		query.setParameter("quarto_octal", quarto_octal);
+		
+		return query.getResultList();
+	}
+
 }

@@ -47,4 +47,7 @@ public interface IEquipamento {
 	public List<Equipamento> validacaoIPCadastro(Equipamento equipamento);
 	
 	public List<Equipamento> validacaoIPEdicao(Equipamento equipamento);
+	
+	public List<Equipamento> listarIpsLivre(int quarto_octal, int codigo_delegacia);
+	
 }

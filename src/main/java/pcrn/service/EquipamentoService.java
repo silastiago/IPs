@@ -26,6 +26,12 @@ public class EquipamentoService implements Serializable{
 	}
 	
 	@Transactional
+	public List<Equipamento> listarIPsLIvres(int quarto_octal, int codigo_delegacia) {
+		return equipamentos.listarIpsLivre(quarto_octal, codigo_delegacia);
+	}
+	
+	
+	@Transactional
 	public Equipamento porCodigo(Integer codigo) {
 		return equipamentos.porCodigo(codigo);
 	}
