@@ -2,7 +2,7 @@ package pcrn.interfaces;
 
 import java.util.List;
 
-import pcrn.model.Delegacia;
+import pcrn.model.UnidadePolicial;
 
 
 /** Esta � uma Interface que possui as assinaturas dos metodos da classe Grupo,
@@ -11,14 +11,14 @@ import pcrn.model.Delegacia;
 * @since 15-08-2016
 */
 
-public interface IDelegacia {
+public interface IUnidadePolicial {
 
 	/** Este metodo lista todos os grupos cadastrados.
 	*   
 	* @return retorna a lista dos grupos cadastrados.
 	*   	
 	*/
-	public List<Delegacia> listar();
+	public List<UnidadePolicial> listar();
 	
 	/** Este metodo pesquisa um grupo por seu id.
 	*  	
@@ -26,19 +26,19 @@ public interface IDelegacia {
 	*  @return retorna o Grupo daquele id que voc� est� pesquisando.
 	*   	
 	*/
-	public Delegacia porCodigo(int codigo);
+	public UnidadePolicial porCodigo(int codigo);
 	
 	/** Este metodo cria ou altera um grupo.
 	*  	
 	*  @param grupo, Este grupo � o objeto Grupo que voc� ir� criar ou modificar.
 	*   	
 	*/
-	public void salvar(Delegacia delegacia);
+	public void salvar(UnidadePolicial unidadePolicial);
 	
 	/** Este metodo Remove um grupo.
 	*  	
 	*  @param grupo, Esta grupo � o objeto Grupo que voc� ir� remover.
 	*   	
 	*/
-	public void remover(Delegacia delegacia);
+	public void remover(UnidadePolicial unidadePolicial);
 }

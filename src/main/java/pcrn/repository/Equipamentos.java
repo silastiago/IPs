@@ -24,7 +24,7 @@ public class Equipamentos implements Serializable, IEquipamento{
 	@SuppressWarnings("unchecked")
 	public List<Equipamento> listar(int codigo_delegacia) {
 		List<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
-		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo order by quarto_octal asc");
+		Query query = manager.createQuery("from Equipamento where codigo_unidade = :codigo order by quarto_octal asc");
 		query.setParameter("codigo", codigo_delegacia);
 		listaEquipamento = query.getResultList();
 		return listaEquipamento;
@@ -45,8 +45,8 @@ public class Equipamentos implements Serializable, IEquipamento{
 
 	@SuppressWarnings("unchecked")
 	public List<Equipamento> validacaoIPCadastro(Equipamento equipamento) {
-		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and ip = :ip");
-		query.setParameter("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		Query query = manager.createQuery("from Equipamento where codigo_unidade = :codigo_unidade and ip = :ip");
+		query.setParameter("codigo_unidade", equipamento.getUnidadePolicial().getCodigo());
 		query.setParameter("ip", equipamento.getIp());
 		List<Equipamento> listaEquipamento = query.getResultList();
 		return listaEquipamento;
@@ -54,8 +54,8 @@ public class Equipamentos implements Serializable, IEquipamento{
 
 	@SuppressWarnings("unchecked")
 	public List<Equipamento> validacaoIPEdicao(Equipamento equipamento) {
-		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and ip = :ip  and not codigo = :codigo");
-		query.setParameter("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		Query query = manager.createQuery("from Equipamento where codigo_unidade = :codigo_unidade and ip = :ip  and not codigo = :codigo");
+		query.setParameter("codigo_unidade", equipamento.getUnidadePolicial().getCodigo());
 		query.setParameter("ip", equipamento.getIp());
 		query.setParameter("codigo", equipamento.getCodigo());
 		List<Equipamento> listaEquipamento = query.getResultList();
@@ -65,8 +65,8 @@ public class Equipamentos implements Serializable, IEquipamento{
 	@Override
 	public List<Equipamento> listarIpsLivre(int quarto_octal, int codigo_delegacia) {
 		
-		Query query = manager.createQuery("from Equipamento where codigo_delegacia = :codigo_delegacia and quarto_octal = :quarto_octal");
-		query.setParameter("codigo_delegacia", codigo_delegacia);
+		Query query = manager.createQuery("from Equipamento where codigo_unidade = :codigo_unidade and quarto_octal = :quarto_octal");
+		query.setParameter("codigo_unidade", codigo_delegacia);
 		query.setParameter("quarto_octal", quarto_octal);
 		
 		return query.getResultList();

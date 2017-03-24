@@ -36,6 +36,28 @@
 						action="#{equipamentoBean.excluir}"
 						disabled="#{equipamentoBean.equipamentoSelecionado == null or not seguranca.acessoRemocaoPermitido}"
 						onclick="if (!confirm('Deseja deletar o Equipamento  ? ')) return false" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					
+					<p:commandButton value="Listar" icon="ui-icon-search"
+						action="#{equipamentoBean.listarDelegacias()}" update="@form" />
+	    			
+	    			<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+	    			
+	    			<p:commandButton value="Emitir Relatorio" icon="ui-icon-note" 
+	    				action="#{equipamentoBean.emitir}" onclick="this.form.target='_blank'"
+	    				ajax="false" />	
+					
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					
+					<p:commandButton value="Listar Ips Livres" icon="ui-icon-search"
+						action="#{equipamentoBean.listarIPsLivres()}" update="@form" />
 					
 
 				</p:toolbarGroup>
@@ -47,29 +69,14 @@
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-10">
 
-					<p:outputLabel value="Delegacia" for="delegacia" />
-					<p:selectOneMenu id="delegacia"
-						value="#{equipamentoBean.equipamento.delegacia}" label="Delegacia">
-						<f:selectItem itemLabel="Selecione a Delegacia" />
-						<f:selectItems value="#{delegaciaBean.listar()}" var="delegacia"
-							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
+					<p:outputLabel value="UnidadePolicial" for="unidadePolicial" />
+					<p:selectOneMenu id="unidadePolicial"
+						value="#{equipamentoBean.equipamento.unidadePolicial}" label="UnidadePolicial">
+						<f:selectItem itemLabel="Selecione a Unidade Policial" />
+						<f:selectItems value="#{unidadePolicialBean.listar()}" var="unidadePolicial"
+							itemValue="#{unidadePolicial}" itemLabel="#{unidadePolicial.nome}" />
 					</p:selectOneMenu>					
 					
-				</p:panelGrid>
-				
-				<p:panelGrid id="panelBotao" columns="3" layout="grid"
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-10">
-				
-				<p:commandButton value="Listar" icon="ui-icon-search"
-						action="#{equipamentoBean.listarDelegacias()}" update="@form" />
-	    			
-	    			<p:commandButton value="Emitir Relatorio" action="#{equipamentoBean.emitir}" onclick="this.form.target='_blank'"
-	    				ajax="false" />	
-					
-					<p:commandButton value="Listar Ips Livres" icon="ui-icon-search"
-						action="#{equipamentoBean.listarIPsLivres()}" update="@form" />
 				</p:panelGrid>
 				
 			</div>
@@ -115,13 +122,23 @@
 				</p:column>
 
 
-				<p:column filterBy="#{equipamento.delegacia.nome}"
+				<p:column filterBy="#{equipamento.unidadePolicial.nome}"
 					style="text-align: center; width:5%" filterMatchMode="contains">
 					<f:facet name="header">
-						<h:outputText value="Delegacia" />
+						<h:outputText value="Unidade Policial" />
 					</f:facet>
-					<h:outputText value="#{equipamento.delegacia.nome}" />
+					<h:outputText value="#{equipamento.unidadePolicial.nome}" />
 				</p:column>
+				
+				
+				<p:column filterBy="#{equipamento.setor.nome}"
+					style="text-align: center; width:5%" filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Setor" />
+					</f:facet>
+					<h:outputText value="#{equipamento.setor.nome}" />
+				</p:column>
+				
 
 			</p:dataTable>
 			

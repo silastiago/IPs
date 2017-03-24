@@ -36,9 +36,13 @@
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		
-		<intercept-url pattern="/site/Delegacia/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Delegacia/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
-		<intercept-url pattern="/site/Delegacia/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/UnidadePolicial/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/site/UnidadePolicial/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/UnidadePolicial/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
+		
+		<intercept-url pattern="/site/Setor/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Setor/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />
+		<intercept-url pattern="/site/Setor/Novo/**" access="hasAnyRole('ADMINISTRADOR')" />
 		
 		<intercept-url pattern="/site/Equipamento/Consulta/**" access="hasAnyRole('CONSULTA', 'ADMINISTRADOR')" />
 		<intercept-url pattern="/site/Equipamento/Edicao/**" access="hasAnyRole('ADMINISTRADOR')" />

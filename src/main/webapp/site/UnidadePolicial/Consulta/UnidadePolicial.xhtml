@@ -6,14 +6,14 @@
 	template="/WEB-INF/template/Layout.xhtml">
 
 	<ui:define name="content">
-		<h1 class="aw-page-title">Delegacias Cadastradas</h1>
+		<h1 class="aw-page-title">Unidade Policiais Cadastradas</h1>
 
 		<h:form id="frm">
 
 			<p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{delegaciaBean.novo()}" process="@this"
+						action="#{unidadePolicialBean.novo()}" process="@this"
 						disabled="#{not seguranca.acessoCadastroPermitido}"/>
 
 					<span class="ui-separator"> <span
@@ -21,40 +21,40 @@
 					</span>
 
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
-						title="Editar" process="@this" action="#{delegaciaBean.edicao()}"
-						disabled="#{delegaciaBean.delegaciaSelecionada == null or not seguranca.acessoEdicaoPermitido}" />
+						title="Editar" process="@this" action="#{unidadePolicialBean.edicao()}"
+						disabled="#{unidadePolicialBean.unidadePolicialSelecionada == null or not seguranca.acessoEdicaoPermitido}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
 					<p:commandButton value="Excluir" icon="ui-icon-trash"
-						title="Excluir" process="@this" update="tabela_delegacias toolbar"
-						action="#{delegaciaBean.excluir}"
-						disabled="#{delegaciaBean.delegaciaSelecionada == null or not seguranca.acessoRemocaoPermitido}"
-						onclick="if (!confirm('Deseja deletar Delegacia  #{delegaciaBean.delegaciaSelecionada.nome} ? ')) return false" />
+						title="Excluir" process="@this" update="tabela_unidades toolbar"
+						action="#unidadePolicialBean.excluir}"
+						disabled="#{unidadePolicialBean.unidadePolicialSelecionada == null or not seguranca.acessoRemocaoPermitido}"
+						onclick="if (!confirm('Deseja deletar a Unidade Policial  #{unidadePolicialBean.unidadePolicialSelecionada.nome} ? ')) return false" />
 
 
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<p:dataTable id="tabela_delegacias" var="delegacia"
-				value="#{delegaciaBean.listar()}" frame="box" rules="all"
+			<p:dataTable id="tabela_unidades" var="unidadePolicial"
+				value="#{unidadePolicialBean.listar()}" frame="box" rules="all"
 				cellpadding="3" width="100%" headerClass="cabecalho"
 				rowClasses="cor-sim, cor-nao" columnClasses="nome"
-				emptyMessage="Nenhuma delegacia Cadastrada"
-				selection="#{delegaciaBean.delegaciaSelecionada}"
-				selectionMode="single" rowKey="#{delegacia.codigo}">
+				emptyMessage="Nenhuma Unidade Cadastrada"
+				selection="#{unidadePolicialBean.unidadePolicialSelecionada}"
+				selectionMode="single" rowKey="#{unidadePolicial.codigo}">
 
 				<p:ajax event="rowSelect" update=":frm:toolbar" />
 				<p:ajax event="rowUnselect" update=":frm:toolbar" />
 
-				<p:column filterBy="#{delegacia.nome}"
+				<p:column filterBy="#{unidadePolicial.nome}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">
 					<f:facet name="header">
-						<h:outputText value="Delegacia" />
+						<h:outputText value="Unidade Policial" />
 					</f:facet>
-					<h:outputText value="#{delegacia.nome}" />
+					<h:outputText value="#{unidadePolicial.nome}" />
 				</p:column>
 
 			</p:dataTable>

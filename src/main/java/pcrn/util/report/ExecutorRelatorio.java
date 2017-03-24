@@ -51,13 +51,14 @@ public class ExecutorRelatorio implements Work {
 				exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
 				
 				response.setContentType("application/pdf");
-				response.setHeader("Content-Disposition", "attachment; filename=\"" 
-						+ this.nomeArquivoSaida  + "\"");
+				/*response.setHeader("Content-Disposition", "attachment; filename=\"" 
+						+ this.nomeArquivoSaida  + "\"");*/
 				
 				exportador.exportReport();
 			}
 		} catch (Exception e) {
-			throw new SQLException("Erro ao executar relatório " + this.caminhoRelatorio, e);
+			System.out.println("Erro na geracao de relatorio: "+ e.getMessage());
+			throw new SQLException("Erro ao executar relatório " + this.caminhoRelatorio, e.getMessage());
 		}
 	}
 

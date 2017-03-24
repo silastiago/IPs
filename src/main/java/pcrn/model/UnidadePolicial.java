@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table
-public class Delegacia implements Serializable{
+@Table(name="unidade_policial")
+public class UnidadePolicial implements Serializable{
 
 	/**
 	 * 
@@ -35,8 +35,8 @@ public class Delegacia implements Serializable{
 		this.codigo = codigo;
 	}
 	
-	@NotEmpty(message = "Nome da delegacia deve ser informada")
-	@Column(name="nome_delegacia")
+	@NotEmpty(message = "Nome da Unidade deve ser informada")
+	@Column(name="nome_unidade")
 	public String getNome() {
 		return nome;
 	}
@@ -44,7 +44,7 @@ public class Delegacia implements Serializable{
 		this.nome = nome;
 	}
 	
-	@OneToMany(mappedBy="delegacia", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="unidadePolicial", cascade=CascadeType.REMOVE)
 	public List<Equipamento> getListaEquipamento() {
 		return listaEquipamento;
 	}
@@ -67,7 +67,7 @@ public class Delegacia implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Delegacia other = (Delegacia) obj;
+		UnidadePolicial other = (UnidadePolicial) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

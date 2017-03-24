@@ -62,7 +62,7 @@ public class EquipamentoBean implements Serializable{
 	
 	public void emitir() {
 		Map<String, Object> parametros = new HashMap<>();
-		parametros.put("codigo_delegacia", equipamento.getDelegacia().getCodigo());
+		parametros.put("codigo_unidade", equipamento.getUnidadePolicial().getCodigo());
 		
 		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/ips.jasper",
 				this.response, parametros, "Relatorio_de_Ip.pdf");
@@ -82,7 +82,7 @@ public class EquipamentoBean implements Serializable{
 		renderizarLista = false;
 		
 		for (int i = 1; i < 256; i++) {
-			if (equipamentoService.listarIPsLIvres(i, equipamento.getDelegacia().getCodigo()).size() == 1) {
+			if (equipamentoService.listarIPsLIvres(i, equipamento.getUnidadePolicial().getCodigo()).size() == 1) {
 				
 			}else{
 				System.out.println("Ips Livres: " + i);
@@ -163,7 +163,7 @@ public class EquipamentoBean implements Serializable{
 		renderizarTabela = 2;
 		renderizarLista = true;
 		System.out.println(renderizarTabela);
-		listaEquipamento = equipamentoService.listar(equipamento.getDelegacia().getCodigo());
+		listaEquipamento = equipamentoService.listar(equipamento.getUnidadePolicial().getCodigo());
 		return listaEquipamento;
 	}
 
@@ -173,7 +173,7 @@ public class EquipamentoBean implements Serializable{
 			listaEquipamento = null;
 		}else {
 			//Esta linha lista os grupos e joga em uma lista de grupos.
-			listaEquipamento = equipamentoService.listar(this.equipamento.getDelegacia().getCodigo());
+			listaEquipamento = equipamentoService.listar(this.equipamento.getUnidadePolicial().getCodigo());
 		}
 
 		//Retorna a lista de grupos
@@ -201,8 +201,6 @@ public class EquipamentoBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	public Equipamento getIpLivre() {
 		return ipLivre;

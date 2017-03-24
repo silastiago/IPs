@@ -8,8 +8,9 @@
 		
 		<class>pcrn.model.Grupo</class>
 		<class>pcrn.model.Pessoa</class>
-		<class>pcrn.model.Delegacia</class>
+		<class>pcrn.model.UnidadePolicial</class>
 		<class>pcrn.model.Equipamento</class>
+		<class>pcrn.model.Setor</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/ips" />
@@ -18,7 +19,7 @@
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			
 		</properties>

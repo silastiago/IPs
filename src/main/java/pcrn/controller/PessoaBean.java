@@ -7,11 +7,13 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.annotation.PostConstruct;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.component.datatable.DataTable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import pcrn.model.Grupo;
@@ -40,7 +42,10 @@ public class PessoaBean implements Serializable{
 	private Pessoa pessoaSelecionada;
 	private List<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 	private List<Grupo> listaGrupos;
-
+	private DataTable listaDatatable;
+	private HtmlDataTable listarData;
+	
+	
 	@Inject
 	private Grupos grupos;
 
@@ -49,8 +54,7 @@ public class PessoaBean implements Serializable{
 	public void inicializar(){
 		listaGrupos = grupos.listar();
 	}
-
-
+	
 
 	public void cadastrar() {
 
@@ -178,6 +182,20 @@ public class PessoaBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
+
+	
+	
+	public DataTable getListaDatatable() {
+		return listaDatatable;
+	}
+
+
+
+	public void setListaDatatable(DataTable listaDatatable) {
+		this.listaDatatable = listaDatatable;
+	}
+
+
 
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;

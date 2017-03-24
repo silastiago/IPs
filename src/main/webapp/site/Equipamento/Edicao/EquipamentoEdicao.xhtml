@@ -48,14 +48,21 @@
 					<p:inputText id="ip" value="#{equipamentoBean.equipamento.ip}"
 						placeholder="Aqui fica o ip do Equipamento" />
 
-					<p:outputLabel value="Delegacia" for="delegacia" />
-					<p:selectOneMenu id="delegacia"
-						value="#{equipamentoBean.equipamento.delegacia}" label="Delegacia" >
-						<f:selectItem itemLabel="Selecione a Delegacia" noSelectionOption="true"/>
-						<f:selectItems value="#{delegaciaBean.listar()}" var="delegacia"
-							itemValue="#{delegacia}" itemLabel="#{delegacia.nome}" />
+					<p:outputLabel value="UnidadePolicial" for="unidadePolicial" />
+					<p:selectOneMenu id="unidadePolicial"
+						value="#{equipamentoBean.equipamento.unidadePolicial}" label="UnidadePolicial" >
+						<f:selectItem itemLabel="Selecione a Unidade Policial" noSelectionOption="true"/>
+						<f:selectItems value="#{unidadePolicialBean.listar()}" var="unidadePolicial"
+							itemValue="#{unidadePolicial}" itemLabel="#{unidadePolicial.nome}" />
 					</p:selectOneMenu>
 					
+					<p:outputLabel value="Setor" for="setor" />
+					<p:selectOneMenu id="setor"
+						value="#{equipamentoBean.equipamento.setor}" label="Setor" >
+						<f:selectItem itemLabel="Selecione o Setor" noSelectionOption="true"/>
+						<f:selectItems value="#{setorBean.listar()}" var="setor"
+							itemValue="#{setor}" itemLabel="#{setor.nome}" />
+					</p:selectOneMenu>
 				
 				</p:panelGrid>
 			</div>

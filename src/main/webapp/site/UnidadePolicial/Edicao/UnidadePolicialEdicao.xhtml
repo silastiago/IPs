@@ -6,7 +6,7 @@
 	template="/WEB-INF/template/Layout.xhtml">	
 	
 <f:metadata>
-	<f:viewParam name="codigo" value="#{delegaciaBean.delegacia}" />
+	<f:viewParam name="codigo" value="#{unidadePolicialBean.unidadePolicial}" />
 </f:metadata>
 
 	<ui:define name="content">
@@ -16,7 +16,7 @@
 			
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Editar" action="#{delegaciaBean.editar()}"
+					<p:commandButton value="Editar" action="#{unidadePolicialBean.editar()}"
 						process="@this capaPanel"/>
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -30,7 +30,7 @@
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
 					<p:outputLabel value="Nome" for="nome" />
-					<p:inputText id="nome" value="#{delegaciaBean.delegacia.nome}" />
+					<p:inputText id="nome" value="#{unidadePolicialBean.unidadePolicial.nome}" />
 					
 				</p:panelGrid>
 			</div>		

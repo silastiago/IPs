@@ -28,7 +28,8 @@ public class Equipamento implements Serializable{
 	private String descricao;
 	private String ip;
 	private int quartoOctal;
-	private Delegacia delegacia;
+	private UnidadePolicial unidadePolicial;
+	private Setor setor;
 	
 	@Id
 	@GeneratedValue
@@ -74,25 +75,39 @@ public class Equipamento implements Serializable{
 		this.quartoOctal = quartoOctal;
 	}
 	
-	@NotNull(message = "Delegacia deve ser informada")
+	@NotNull(message = "Unidade Policial deve ser informada")
 	@ManyToOne
-	@JoinColumn(name="codigo_delegacia", referencedColumnName="codigo")
-	public Delegacia getDelegacia() {
-		return delegacia;
+	@JoinColumn(name="codigo_unidade", referencedColumnName="codigo")
+	public UnidadePolicial getUnidadePolicial() {
+		return unidadePolicial;
 	}
-	public void setDelegacia(Delegacia delegacia) {
-		this.delegacia = delegacia;
+	public void setUnidadePolicial(UnidadePolicial unidadePolicial) {
+		this.unidadePolicial = unidadePolicial;
 	}
+	
+	@NotNull(message = "Setor deve ser informado")
+	@ManyToOne
+	@JoinColumn(name="codigo_setor", referencedColumnName="codigo")
+	public Setor getSetor() {
+		return setor;
+	}
+	
+	
+	public void setSetor(Setor setor) {
+		this.setor = setor;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((delegacia == null) ? 0 : delegacia.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((ip == null) ? 0 : ip.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + quartoOctal;
+		result = prime * result + ((setor == null) ? 0 : setor.hashCode());
+		result = prime * result + ((unidadePolicial == null) ? 0 : unidadePolicial.hashCode());
 		return result;
 	}
 	@Override
@@ -108,11 +123,6 @@ public class Equipamento implements Serializable{
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (delegacia == null) {
-			if (other.delegacia != null)
-				return false;
-		} else if (!delegacia.equals(other.delegacia))
 			return false;
 		if (descricao == null) {
 			if (other.descricao != null)
@@ -130,6 +140,16 @@ public class Equipamento implements Serializable{
 		} else if (!nome.equals(other.nome))
 			return false;
 		if (quartoOctal != other.quartoOctal)
+			return false;
+		if (setor == null) {
+			if (other.setor != null)
+				return false;
+		} else if (!setor.equals(other.setor))
+			return false;
+		if (unidadePolicial == null) {
+			if (other.unidadePolicial != null)
+				return false;
+		} else if (!unidadePolicial.equals(other.unidadePolicial))
 			return false;
 		return true;
 	}
