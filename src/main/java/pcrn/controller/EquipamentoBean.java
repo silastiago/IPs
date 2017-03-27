@@ -64,7 +64,7 @@ public class EquipamentoBean implements Serializable{
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("codigo_unidade", equipamento.getUnidadePolicial().getCodigo());
 		
-		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/ips.jasper",
+		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/casa/ips.jasper",
 				this.response, parametros, "Relatorio_de_Ip.pdf");
 		
 		Session session = manager.unwrap(Session.class);
